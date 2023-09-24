@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { Tier } from '../../../../../interfaces/user/tier';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -28,6 +29,9 @@ export class User {
 
   @Prop({ default: 0 })
   tokens: number;
+
+  @Prop({ default: Tier.FREE, enum: Tier })
+  tier: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
