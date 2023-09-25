@@ -14,7 +14,7 @@
   "name": "@jonzubi/securscan-shared",
   "private": false,
   "scripts": {
-    "build": "tsc src/index.ts",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "types": "dist/index.d.ts",
