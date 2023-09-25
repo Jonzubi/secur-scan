@@ -1,7 +1,11 @@
 {
   "author": "Jon Zubizarreta <jonzubi97@gmail.com>",
+  "dependencies": {
+    "bcrypt": "^5.1.1"
+  },
   "description": "Shared interfaces and functions for the securscan project",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/node": "^20.6.5",
     "typescript": "^5.2.2"
   },
@@ -18,5 +22,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "types": "dist/index.d.ts",
-  "version": "0.0.5"
+  "version": "0.0.6"
 }
