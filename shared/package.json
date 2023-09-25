@@ -1,6 +1,10 @@
 {
   "author": "Jon Zubizarreta <jonzubi97@gmail.com>",
   "description": "Shared interfaces and functions for the securscan project",
+  "devDependencies": {
+    "@types/node": "^20.6.5",
+    "typescript": "^5.2.2"
+  },
   "files": [
     "dist"
   ],
@@ -13,5 +17,5 @@
     "build": "tsc index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.2"
+  "version": "0.0.3"
 }
