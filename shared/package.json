@@ -1,13 +1,17 @@
 {
   "author": "Jon Zubizarreta <jonzubi97@gmail.com>",
   "description": "Shared interfaces and functions for the securscan project",
+  "files": [
+    "dist"
+  ],
   "keywords": [],
   "license": "MIT",
   "main": "index.js",
   "name": "@jonzubi/securscan-shared",
   "private": false,
   "scripts": {
+    "build": "tsc index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
