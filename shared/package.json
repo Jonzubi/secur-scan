@@ -1,0 +1,13 @@
+{
+  "author": "Jon Zubizarreta <jonzubi97@gmail.com>",
+  "description": "Shared interfaces and functions for the securscan project",
+  "keywords": [],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "@jonzubi/securscan-shared",
+  "private": false,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.1"
+}
