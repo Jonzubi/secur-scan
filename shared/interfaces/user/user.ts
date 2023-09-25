@@ -1,4 +1,4 @@
-export interface User {
+export interface IUser {
   email: string;
   password: string;
   username: string;
@@ -10,7 +10,7 @@ export interface User {
   tier: string;
 }
 
-export interface createUser {
+export interface ICreateUser {
   email: string;
   password: string;
   username: string;

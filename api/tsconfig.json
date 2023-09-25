@@ -16,6 +16,9 @@
     "sourceMap": true,
     "strictBindCallApply": false,
     "strictNullChecks": false,
-    "target": "ES2021"
+    "target": "ES2021",
+    "paths": {
+      "@shared/*": ["../shared/*"]
+    }
   }
 }
