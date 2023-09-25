@@ -17,8 +17,5 @@
     "strictBindCallApply": false,
     "strictNullChecks": false,
     "target": "ES2021",
-    "paths": {
-      "@shared/*": ["../shared/*"]
-    }
   }
 }
