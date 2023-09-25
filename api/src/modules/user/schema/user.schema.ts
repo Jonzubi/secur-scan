@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { Tier } from '@jonzubi/securscan-shared/interfaces/user/tier';
+import { Tier } from '@jonzubi/securscan-shared/dist';
 
 export type UserDocument = HydratedDocument<User>;
 
