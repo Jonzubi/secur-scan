@@ -10,12 +10,13 @@
   ],
   "keywords": [],
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/index.js",
   "name": "@jonzubi/securscan-shared",
   "private": false,
   "scripts": {
-    "build": "tsc index.ts",
+    "build": "tsc src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.3"
+  "types": "dist/index.d.ts",
+  "version": "0.0.4"
 }
