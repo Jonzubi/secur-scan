@@ -13,6 +13,12 @@ export class UserController {
 
   @Post()
   async createUser(@Body() user: ICreateUser, @Res() res: Response) {
+    if (!user.email || !user.password || !user.username) {
+      res.sendStatus(HttpStatus.BAD_REQUEST);
+      res.send();
+      return;
+    }
+
     const newUser = await this.usersService.createUser(user);
 
     await this.mailService.sendMail({
