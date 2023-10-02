@@ -1,3 +1,5 @@
+import { AxiosRequestConfig } from 'axios';
+
 export const performTimeConsumingTask = async () =>
   new Promise((resolve) =>
     setTimeout(() => {
@@ -5,7 +7,9 @@ export const performTimeConsumingTask = async () =>
     }, 2000),
   );
 
-export const getHeaderWithAccessToken = (accessToken: string) => ({
+export const getHeaderWithAccessToken = (
+  accessToken: string,
+): AxiosRequestConfig => ({
   headers: {
     Authorization: `Bearer ${accessToken}`,
   },
