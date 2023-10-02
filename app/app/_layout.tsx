@@ -18,8 +18,7 @@ const _layout = () => {
         const access_token = await SecureStore.getItemAsync('access_token');
         if (access_token === null) throw new Error();
         const data = await getProfile(access_token);
-        const json = await data.json();
-        const { email, username } = json;
+        const { email, username } = data.data;
         setUserData({
           access_token,
           email,
