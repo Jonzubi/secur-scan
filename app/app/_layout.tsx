@@ -8,6 +8,7 @@ import { getProfile } from '../api/user';
 SplashScreen.preventAutoHideAsync();
 
 const _layout = () => {
+  const [initialRoute, setInitialRoute] = useState('');
   const [ready, setReady] = useState(false);
   const { setUserData } = useUserStore();
 
@@ -24,8 +25,10 @@ const _layout = () => {
           email,
           username,
         });
+        setInitialRoute('index');
       } catch (error) {
-        console.log(JSON.stringify(error));
+        console.log(error);
+        setInitialRoute('login');
       } finally {
         setReady(true);
       }
@@ -42,7 +45,7 @@ const _layout = () => {
     return null;
   }
 
-  return <Stack />;
+  return <Stack initialRouteName={initialRoute} />;
 };
 
 export default _layout;
