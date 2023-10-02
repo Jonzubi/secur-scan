@@ -1,4 +1,4 @@
-import { getHeaderWithAccessToken } from 'utils/functions';
+import { getHeaderWithAccessToken } from '../utils/functions';
 
 export const getProfile = (token: string) =>
   fetch(
