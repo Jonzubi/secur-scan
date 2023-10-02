@@ -1,12 +1,13 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+import { useUserStore } from '../store/userStore';
+import { Redirect } from 'expo-router';
 
 const index = () => {
-  return (
-    <View>
-      <Text>index</Text>
-    </View>
-  );
+  const { access_token } = useUserStore();
+
+  if (access_token === '') {
+    return <Redirect href={'/login'} />;
+  }
+  return <Redirect href={'/home'} />;
 };
 
 export default index;
