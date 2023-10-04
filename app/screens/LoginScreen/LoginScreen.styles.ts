@@ -6,11 +6,15 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.BACKGROUND,
     justifyContent: 'center',
-    alignItems: 'center',
     paddingHorizontal: 15,
   },
   logo: {
     width: 300,
     height: 300,
+    alignSelf: 'center',
+  },
+  form: {
+    marginTop: 30,
+    gap: 15,
   },
 });

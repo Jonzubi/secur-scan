@@ -1,5 +1,7 @@
 export default {
   MAIN_RED: '#E84545',
+  SECONDARY_RED: '#800000',
   BACKGROUND: '#171717',
   WHITE: '#EFEFEF',
+  GRAY: '#696969',
 };
