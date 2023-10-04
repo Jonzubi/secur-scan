@@ -24,7 +24,7 @@
     "scheme": "securscanmobile",
     "slug": "securscanmobile",
     "splash": {
-      "backgroundColor": "#ffffff",
+      "backgroundColor": "#000000",
       "image": "./assets/images/splash.png",
       "resizeMode": "contain"
     },
