@@ -1,4 +1,4 @@
-import Colors from '../../constants/Colors';
+import Colors from '../../constants/colors';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -8,5 +8,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 15,
+  },
+  logo: {
+    width: 300,
+    height: 300,
+    resizeMode: 'contain',
   },
 });
