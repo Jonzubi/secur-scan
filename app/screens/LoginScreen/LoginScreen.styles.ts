@@ -1,5 +1,8 @@
 import Colors from '../../constants/colors';
 import { StyleSheet } from 'react-native';
+import { Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
@@ -9,8 +12,8 @@ export default StyleSheet.create({
     paddingHorizontal: 15,
   },
   logo: {
-    width: 300,
-    height: 300,
+    width: 500 * width * 0.001,
+    height: 500 * width * 0.001,
     alignSelf: 'center',
   },
   form: {
