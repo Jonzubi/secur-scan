@@ -4,8 +4,32 @@ import { performTimeConsumingTask } from '../utils/functions';
 import { useUserStore } from '../store/userStore';
 import * as SecureStore from 'expo-secure-store';
 import { getProfile } from '../api/user';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import 'i18next';
+import eng_json from '../i18n/eng.json';
 
 SplashScreen.preventAutoHideAsync();
+
+declare module 'i18next' {
+  interface CustomTypeOptions {
+    returnNull: false;
+  }
+}
+
+i18n.use(initReactI18next).init({
+  compatibilityJSON: 'v3',
+  resources: {
+    eng: {
+      translation: eng_json,
+    },
+  },
+  returnNull: false,
+  fallbackLng: 'eng',
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 const _layout = () => {
   const [ready, setReady] = useState(false);

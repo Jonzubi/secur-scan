@@ -1,0 +1,7 @@
+{
+  "loginScreen": {
+    "emailPlaceholder": "Insert email here...",
+    "passwordPlaceholder": "Insert password here...",
+    "submitButton": "Login"
+  }
+}
