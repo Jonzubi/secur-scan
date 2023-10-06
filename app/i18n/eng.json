@@ -2,6 +2,8 @@
   "loginScreen": {
     "emailPlaceholder": "Insert email here...",
     "passwordPlaceholder": "Insert password here...",
-    "submitButton": "Login"
+    "submitButton": "Login",
+    "youNew": "You new?",
+    "goRegister": "Go register!"
   }
 }

@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import React from 'react';
 import styles from './LoginScreen.styles';
 import Logo from '../../components/Logo/Logo';
@@ -7,6 +7,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import Colors from '../../constants/colors';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'expo-router';
 
 const LoginScreen = () => {
   const { t } = useTranslation();
@@ -30,15 +31,19 @@ const LoginScreen = () => {
             <AntDesign name="lock" size={24} color={Colors.SECONDARY_RED} />
           }
         />
-
         <SubmitButton
-          containerStyle={{ width: '100%' }}
           title={t('loginScreen.submitButton')}
           isLoading={false}
           handlePress={() => {
             console.log('submit');
           }}
         />
+        <View style={styles.registerView}>
+          <Text style={styles.youNewText}>{t('loginScreen.youNew')}</Text>
+          <Link href={'register'} style={styles.registerText}>
+            <Text>{t('loginScreen.goRegister')}</Text>
+          </Link>
+        </View>
       </View>
     </View>
   );
