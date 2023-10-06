@@ -11,6 +11,9 @@ import { Link } from 'expo-router';
 
 const LoginScreen = () => {
   const { t } = useTranslation();
+
+  const handleLogin = async () => {};
+
   return (
     <View style={styles.container}>
       <Logo imageStyle={styles.logo} />
@@ -34,9 +37,7 @@ const LoginScreen = () => {
         <SubmitButton
           title={t('loginScreen.submitButton')}
           isLoading={false}
-          handlePress={() => {
-            console.log('submit');
-          }}
+          handlePress={handleLogin}
         />
         <View style={styles.registerView}>
           <Text style={styles.youNewText}>{t('loginScreen.youNew')}</Text>
