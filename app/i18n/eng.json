@@ -4,6 +4,13 @@
     "passwordPlaceholder": "Insert password here...",
     "submitButton": "Login",
     "youNew": "You new?",
-    "goRegister": "Go register!"
+    "goRegister": "Go register!",
+    "notEmail": "It is not a valid email"
+  },
+  "errors": {
+    "generic": "Something went wrong"
+  },
+  "auth": {
+    "incorrectLogin": "The email or password are incorrect"
   }
 }
