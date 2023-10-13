@@ -89,6 +89,7 @@ const LoginScreen = () => {
         <Input
           inputStyle={{ color: Colors.WHITE }}
           placeholder={t('loginScreen.passwordPlaceholder')}
+          secureTextEntry={true}
           placeholderTextColor={Colors.GRAY}
           leftIcon={
             <AntDesign name="lock" size={24} color={Colors.SECONDARY_RED} />
