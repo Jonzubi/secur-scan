@@ -7,6 +7,12 @@
     "goRegister": "Go register!",
     "notEmail": "It is not a valid email"
   },
+  "registerScreen": {
+    "emailPlaceholder": "Insert email here...",
+    "passwordPlaceholder": "Insert password here...",
+    "repeatPasswordPlaceholder": "Repeat password here...",
+    "submitButton": "Register"
+  },
   "errors": {
     "generic": "Something went wrong"
   },
