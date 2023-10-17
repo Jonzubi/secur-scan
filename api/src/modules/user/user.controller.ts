@@ -3,6 +3,7 @@ import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { UserService } from './user.service';
 import { MailService } from '../mail/mail.service';
+import { Public } from 'src/decorators/IsPublic';
 
 @Controller('user')
 export class UserController {
@@ -12,6 +13,7 @@ export class UserController {
   ) {}
 
   @Post()
+  @Public()
   async createUser(@Body() user: ICreateUser, @Res() res: Response) {
     if (!user.email || !user.password) {
       res.sendStatus(HttpStatus.BAD_REQUEST);
