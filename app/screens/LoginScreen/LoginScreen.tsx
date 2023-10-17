@@ -49,10 +49,9 @@ const LoginScreen = () => {
     setIsLoading(true);
     try {
       const userData = await login({ email, password });
-      const { access_token, username } = userData.data;
+      const { access_token } = userData.data;
       setUserData({
         access_token,
-        username,
         email: userData.data.email,
       });
       await SecureStore.setItemAsync('access_token', access_token);

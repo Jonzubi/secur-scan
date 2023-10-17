@@ -41,11 +41,10 @@ const _layout = () => {
         const access_token = await SecureStore.getItemAsync('access_token');
         if (access_token === null) throw new Error();
         const data = await getProfile(access_token);
-        const { email, username } = data.data;
+        const { email } = data.data;
         setUserData({
           access_token,
           email,
-          username,
         });
       } catch (error) {
         resetUserData();
