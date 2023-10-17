@@ -11,9 +11,15 @@ import CustomToast, {
   ToastType,
 } from '../../components/CustomToast/CustomToast';
 import { useModal } from '../../hooks/useModal';
+import { isEmail } from '@jonzubi/securscan-shared';
+import { createUser } from '../../api/user';
+import { useUserStore } from '../../store/userStore';
+import { useRouter } from 'expo-router';
 
 const RegisterScreen = () => {
   const { t } = useTranslation();
+  const { setUserEmail } = useUserStore();
+  const router = useRouter();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,9 +28,47 @@ const RegisterScreen = () => {
   const [errorPassword, setErrorPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { modalText, setModalText, setShowModal, showModal } = useModal(
-    t('auth.incorrectLogin'),
+    t('errors.generic'),
   );
+
   const emailRef = useRef<any>(null);
+  const passwordRef = useRef<any>(null);
+  const confirmPasswordRef = useRef<any>(null);
+
+  const validateForm = (): boolean => {
+    let isValid = true;
+    setErrorEmail('');
+    setErrorPassword('');
+
+    if (!isEmail(email)) {
+      emailRef.current!.shake();
+      setErrorEmail(t('registerScreen.not_email'));
+      isValid = false;
+    }
+    if (password !== confirmPassword) {
+      passwordRef.current!.shake();
+      confirmPasswordRef.current!.shake();
+      setErrorPassword(t('registerScreen.same_password'));
+      isValid = false;
+    }
+    return isValid;
+  };
+
+  const handleRegister = async () => {
+    if (!validateForm()) return;
+    setIsLoading(true);
+    try {
+      await createUser({ email, password });
+      setUserEmail(email);
+      setIsLoading(false);
+      router.replace('verify-mail');
+    } catch (error) {
+      console.log(JSON.stringify(error));
+      setShowModal(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -66,7 +110,7 @@ const RegisterScreen = () => {
         <SubmitButton
           title={t('registerScreen.submitButton')}
           isLoading={isLoading}
-          handlePress={() => {}}
+          handlePress={handleRegister}
         />
         <CustomToast
           type={ToastType.ERROR}
