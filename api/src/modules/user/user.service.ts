@@ -21,7 +21,6 @@ export class UserService {
       loginByGoogle,
       tier: Tier.FREE,
       tokens: 0,
-      username: userData.username,
       emailVerificationToken: Math.random().toString(36).slice(2),
     };
 

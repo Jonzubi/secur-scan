@@ -30,7 +30,6 @@ export class AuthService {
     return {
       access_token,
       email,
-      username: foundUser.username,
     };
   }
 
