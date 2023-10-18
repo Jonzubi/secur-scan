@@ -13,8 +13,12 @@
     "repeatPasswordPlaceholder": "Repeat password here...",
     "submitButton": "Register"
   },
+  "verifyMailSentScreen": {
+    "mainText": "We have sent you an email to verify your account ({{email}})"
+  },
   "errors": {
-    "generic": "Something went wrong"
+    "generic": "Something went wrong",
+    "emailNotVerified": "Your email is not verified"
   },
   "auth": {
     "incorrectLogin": "The email or password are incorrect"
