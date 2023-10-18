@@ -8,6 +8,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import 'i18next';
 import eng_json from '../i18n/eng.json';
+import Header from '../components/Header/Header';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -69,7 +70,15 @@ const _layout = () => {
       screenOptions={{
         headerShown: false,
       }}
-    />
+    >
+      <Stack.Screen
+        name="home"
+        options={{
+          headerShown: true,
+          header: () => <Header />,
+        }}
+      />
+    </Stack>
   );
 };
 
