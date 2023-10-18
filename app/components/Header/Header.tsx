@@ -9,7 +9,7 @@ const { width } = Dimensions.get('window');
 const Header = () => {
   return (
     <View style={styles.container}>
-      {width > 1400 ? (
+      {width > 500 ? (
         <HeaderLogo
           imageStyle={{
             height: 400,
