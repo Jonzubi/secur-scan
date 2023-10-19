@@ -9,7 +9,7 @@ export default function Layout() {
         headerShown: false,
         tabBarStyle: {
           backgroundColor: colors.BACKGROUND,
-          borderTopColor: colors.WHITE,
+          borderTopColor: colors.GRAY,
           borderTopWidth: 1,
           height: 60,
         },
