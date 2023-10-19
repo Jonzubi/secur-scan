@@ -10,6 +10,8 @@ export default function Layout() {
         tabBarStyle: {
           backgroundColor: colors.BACKGROUND,
           borderTopColor: colors.WHITE,
+          borderTopWidth: 1,
+          height: 60,
         },
       }}
     >
