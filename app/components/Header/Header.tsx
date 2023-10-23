@@ -3,6 +3,8 @@ import React from 'react';
 import styles from './Header.styles';
 import HeaderLogo from '../../components/HeaderLogo/HeaderLogo';
 import Logo from '../../components/Logo/Logo';
+import { DrawerToggleButton } from '@react-navigation/drawer';
+import colors from '../../constants/colors';
 
 const { width } = Dimensions.get('window');
 
@@ -26,6 +28,7 @@ const Header = () => {
           }}
         />
       )}
+      <DrawerToggleButton tintColor={colors.MAIN_RED} />
     </View>
   );
 };
