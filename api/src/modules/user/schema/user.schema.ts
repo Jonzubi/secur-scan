@@ -24,7 +24,7 @@ export class User {
   @Prop()
   emailVerificationToken?: string;
 
-  @Prop({ default: 0 })
+  @Prop({ default: 5 })
   tokens: number;
 
   @Prop({ default: Tier.FREE, enum: Tier })
