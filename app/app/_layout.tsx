@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Stack, SplashScreen } from 'expo-router';
-import { Drawer } from 'expo-router/drawer';
 import { performTimeConsumingTask } from '../utils/functions';
 import { useUserStore } from '../store/userStore';
 import * as SecureStore from 'expo-secure-store';
@@ -67,20 +66,19 @@ const _layout = () => {
   }
 
   return (
-    <Drawer
+    <Stack
       screenOptions={{
         headerShown: false,
-        drawerPosition: 'right',
       }}
     >
-      <Drawer.Screen
+      <Stack.Screen
         name="home"
         options={{
           headerShown: true,
           header: () => <Header />,
         }}
       />
-    </Drawer>
+    </Stack>
   );
 };
 

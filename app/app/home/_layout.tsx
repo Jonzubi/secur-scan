@@ -41,6 +41,19 @@ export default function Layout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          tabBarLabel: () => null,
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name={focused ? 'person' : 'person-outline'}
+              size={24}
+              color={focused ? colors.MAIN_RED : colors.WHITE}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
