@@ -17,6 +17,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.GRAY,
     borderRadius: 10,
+    marginBottom: 15,
   },
   optionContainerText: {
     color: colors.WHITE,

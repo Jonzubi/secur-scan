@@ -27,6 +27,7 @@
     "text": "Logout"
   },
   "profileScreen": {
-    "myTokens": "My Tokens:"
+    "myTokens": "My Tokens:",
+    "myPlan": "My Plan:"
   }
 }

@@ -7,7 +7,7 @@ import { useUserStore } from '../../store/userStore';
 
 const ProfileScreen = () => {
   const { t } = useTranslation();
-  const { tokens } = useUserStore();
+  const { tokens, tier } = useUserStore();
   return (
     <View style={styles.container}>
       <View style={styles.optionsContainer}>
@@ -25,6 +25,12 @@ const ProfileScreen = () => {
               }}
             />
           </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.optionContainer}>
+          <Text style={styles.optionContainerText}>
+            {t('profileScreen.myPlan')}
+          </Text>
+          <Text style={styles.optionContainerText}>{tier}</Text>
         </TouchableOpacity>
       </View>
       <LogOutButton />
