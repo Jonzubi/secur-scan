@@ -30,7 +30,7 @@ export class UserService {
     return user;
   }
 
-  async findUserByEmail(email: string) {
+  async findUserByEmail(email: string): Promise<User> {
     const foundUser = await this.userModel.findOne({
       email,
     });

@@ -39,9 +39,13 @@ export class AuthController {
     const { email } = req.user;
     const foundUser = await this.userService.findUserByEmail(email);
     if (foundUser === null) throw new UnauthorizedException();
+    const { tier, tokens } = foundUser;
+
     res.status(HttpStatus.OK);
     res.send({
       email,
+      tier,
+      tokens,
     });
   }
 }

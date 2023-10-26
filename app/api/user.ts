@@ -1,9 +1,9 @@
-import { ICreateUser, ISignIn } from '@jonzubi/securscan-shared';
+import { ICreateUser, ISignIn, IGetProfile } from '@jonzubi/securscan-shared';
 import { getHeaderWithAccessToken } from '../utils/functions';
 import axios from './axios';
 
 export const getProfile = (token: string) =>
-  axios.get(
+  axios.get<IGetProfile>(
     `${process.env.EXPO_PUBLIC_API_URL}/auth/profile`,
     getHeaderWithAccessToken(token),
   );
