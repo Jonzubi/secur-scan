@@ -25,5 +25,8 @@
   },
   "logOutButton": {
     "text": "Logout"
+  },
+  "profileScreen": {
+    "myTokens": "My Tokens:"
   }
 }
