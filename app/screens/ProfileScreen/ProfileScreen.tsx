@@ -1,13 +1,13 @@
 import { View, Text } from 'react-native';
-import React from 'react';
-import { useUserStore } from '../../store/userStore';
+import {} from 'react';
+import styles from './ProfileScreen.styles';
+import LogOutButton from '../../components/LogOutButton/LogOutButton';
 
 const ProfileScreen = () => {
-  const { tier, tokens } = useUserStore();
-  console.log(tier, tokens);
   return (
-    <View>
+    <View style={styles.container}>
       <Text>ProfileScreen</Text>
+      <LogOutButton />
     </View>
   );
 };

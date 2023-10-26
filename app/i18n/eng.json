@@ -22,5 +22,8 @@
   },
   "auth": {
     "incorrectLogin": "The email or password are incorrect"
+  },
+  "logOutButton": {
+    "text": "Logout"
   }
 }
