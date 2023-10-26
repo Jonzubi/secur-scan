@@ -20,7 +20,7 @@ import * as SecureStore from 'expo-secure-store';
 
 const LoginScreen = () => {
   const { t } = useTranslation();
-  const { setUserData } = useUserStore();
+  const { setUserData, tier, tokens } = useUserStore();
   const router = useRouter();
 
   const [email, setEmail] = useState('');
@@ -53,6 +53,8 @@ const LoginScreen = () => {
       setUserData({
         access_token,
         email: userData.data.email,
+        tier,
+        tokens,
       });
       await SecureStore.setItemAsync('access_token', access_token);
       setIsLoading(false);
