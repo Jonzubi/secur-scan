@@ -29,5 +29,15 @@
   "profileScreen": {
     "myTokens": "My Tokens:",
     "myPlan": "My Plan:"
+  },
+  "homeScreen": {
+    "requestLinkResolveDomain": "Resolve domain IP",
+    "requestLinkResolveDomainDescription": "Resolve a domain to its IP address",
+    "requestLinkScanIP": "Scan IP",
+    "requestLinkScanIPDescription": "Scan an IP address for vulnerabilities",
+    "requestLinkDetailedInfo": "Detailed information",
+    "requestLinkDetailedInfoDescription": "Get detailed information about an IP address",
+    "requestLinkMitigationAdvices": "Mitigation advices",
+    "requestLinkMitigationAdvicesDescription": "Get mitigation advices for an IP address"
   }
 }

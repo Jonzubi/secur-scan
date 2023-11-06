@@ -5,5 +5,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.BACKGROUND,
+    padding: 15,
   },
 });
