@@ -20,7 +20,7 @@ const HomeScreen = () => {
           />
         )}
         description={t('homeScreen.requestLinkResolveDomainDescription')}
-        tokenCost={1}
+        tokenCost={5}
         href="/request/resolve-domain"
       />
     </View>
