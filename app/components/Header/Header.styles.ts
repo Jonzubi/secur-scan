@@ -17,4 +17,13 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  tokenContainer: {
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'center',
+  },
+  tokenText: {
+    color: colors.WHITE,
+    fontSize: 18,
+  },
 });
