@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import styles from './RequestLink.styles';
 import { Link } from 'expo-router';
 
-type RequestLinkProps = {
+export type RequestLinkProps = {
   title: string;
   icon: () => ReactNode;
   description: string;
