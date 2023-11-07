@@ -38,6 +38,6 @@
     "requestLinkDetailedInfo": "Detailed information",
     "requestLinkDetailedInfoDescription": "Get detailed information about an IP address",
     "requestLinkMitigationAdvices": "Mitigation advices",
-    "requestLinkMitigationAdvicesDescription": "Get mitigation advices for an IP address"
+    "requestLinkMitigationAdvicesDescription": "Get mitigation advices for a detailed information process"
   }
 }
