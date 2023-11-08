@@ -9,11 +9,11 @@ export class Request {
   @Prop({ type: Types.ObjectId, ref: 'User', required: true })
   userId: Types.ObjectId;
 
-  @Prop({ type: RequestType, required: true })
-  requestType: RequestType;
+  @Prop({ type: String, enum: RequestType, required: true })
+  requestType: string;
 
   @Prop()
-  iptoscan: string;
+  ipToScan: string;
 
   @Prop()
   requestToScan: string;
