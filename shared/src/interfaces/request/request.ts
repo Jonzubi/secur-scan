@@ -1,4 +1,4 @@
-export interface CreateRequest {
+export interface ICreateRequest {
   requestType: string;
   iptoscan: string;
   requestToScan: string;
