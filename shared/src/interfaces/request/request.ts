@@ -1,5 +1,5 @@
 export interface ICreateRequest {
-  requestType: string;
+  requestType: RequestType;
   iptoscan: string;
   requestToScan: string;
 }
