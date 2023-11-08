@@ -20,7 +20,7 @@ export class UserService {
       emailVerified: false,
       loginByGoogle,
       tier: Tier.FREE,
-      tokens: 0,
+      tokens: 5,
       emailVerificationToken: Math.random().toString(36).slice(2),
     };
 
