@@ -1,3 +1,4 @@
+import { RequestType } from '@jonzubi/securscan-shared';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
@@ -8,8 +9,8 @@ export class Request {
   @Prop({ type: Types.ObjectId, ref: 'User', required: true })
   userId: Types.ObjectId;
 
-  @Prop({ required: true })
-  requestType: string;
+  @Prop({ type: RequestType, required: true })
+  requestType: RequestType;
 
   @Prop()
   iptoscan: string;
