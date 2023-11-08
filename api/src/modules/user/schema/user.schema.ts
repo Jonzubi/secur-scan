@@ -2,6 +2,10 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { Tier } from '@jonzubi/securscan-shared';
 import { Types } from 'mongoose';
+import {
+  DEFAULT_INITIAL_TIER,
+  DEFAULT_INITIAL_TOKENS,
+} from 'src/utils/constants/user';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -28,11 +32,11 @@ export class User {
   @Prop()
   emailVerificationToken?: string;
 
-  @Prop({ default: 5 })
+  @Prop({ default: DEFAULT_INITIAL_TOKENS })
   tokens: number;
 
-  @Prop({ default: Tier.FREE, enum: Tier })
-  tier: string;
+  @Prop({ default: DEFAULT_INITIAL_TIER, enum: Tier })
+  tier: Tier;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

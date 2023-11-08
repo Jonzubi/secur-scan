@@ -4,6 +4,7 @@ import { User, UserDocument } from './schema/user.schema';
 import { Model } from 'mongoose';
 import { ICreateUser, IUser, Tier } from '@jonzubi/securscan-shared';
 import { hashPassword } from 'src/utils/functions/bcrypt';
+import { DEFAULT_INITIAL_TOKENS } from 'src/utils/constants/user';
 
 @Injectable()
 export class UserService {
@@ -20,7 +21,7 @@ export class UserService {
       emailVerified: false,
       loginByGoogle,
       tier: Tier.FREE,
-      tokens: 5,
+      tokens: DEFAULT_INITIAL_TOKENS,
       emailVerificationToken: Math.random().toString(36).slice(2),
     };
 
