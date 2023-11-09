@@ -16,6 +16,7 @@ import { UserService } from '../user/user.service';
 import { HttpService } from 'src/services/http-service/http-service.service';
 import { Response } from 'express';
 import { AuthGuard } from './auth.guard';
+import { UserDocument } from '../user/schema/user.schema';
 
 @Controller('auth')
 export class AuthController {
@@ -36,7 +37,7 @@ export class AuthController {
   @UseGuards(AuthGuard)
   @Get('profile')
   async getProfile(@Req() req, @Res() res: Response) {
-    const { email } = req.user;
+    const { email } = req.user as UserDocument;
     const foundUser = await this.userService.findUserByEmail(email);
     if (foundUser === null) throw new UnauthorizedException();
     const { tier, tokens } = foundUser;
