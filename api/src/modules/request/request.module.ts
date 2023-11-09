@@ -3,12 +3,17 @@ import { RequestController } from './request.controller';
 import { RequestService } from './request.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Request, RequestSchema } from './schema/request.schema';
+import { QueueService } from './queue.service';
+import { Queue, QueueSchema } from './schema/queue.schema';
 
 @Module({
   controllers: [RequestController],
-  providers: [RequestService],
+  providers: [RequestService, QueueService],
   imports: [
-    MongooseModule.forFeature([{ name: Request.name, schema: RequestSchema }]),
+    MongooseModule.forFeature([
+      { name: Request.name, schema: RequestSchema },
+      { name: Queue.name, schema: QueueSchema },
+    ]),
   ],
 })
 export class RequestModule {}

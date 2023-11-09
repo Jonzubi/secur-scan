@@ -9,12 +9,15 @@ export class RequestService {
   constructor(
     @InjectModel(Request.name) private requestModel: Model<RequestDocument>,
   ) {}
-  async createRequest(request: ICreateRequest, userId: Types.ObjectId) {
+  async createRequest(
+    request: ICreateRequest,
+    userId: Types.ObjectId,
+  ): Promise<RequestDocument> {
     const modelRequest = new this.requestModel({
       ...request,
       userId,
     });
-    await modelRequest.save();
+    return await modelRequest.save();
   }
   async getRequests() {}
 }

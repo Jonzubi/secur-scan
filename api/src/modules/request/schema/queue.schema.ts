@@ -1,12 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
-import { Request } from './request.schema';
+import { Document, Types } from 'mongoose';
 import { Tier } from '@jonzubi/securscan-shared';
+
+export type QueueDocument = Queue & Document;
 
 @Schema()
 export class Queue extends Document {
-  @Prop({ type: Request, required: true })
-  requestId: Request;
+  @Prop({ type: Types.ObjectId, required: true, ref: 'Request' })
+  requestId: Types.ObjectId;
 
   @Prop({ type: Date, required: true })
   reqTimeSpan: Date;

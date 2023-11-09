@@ -10,10 +10,15 @@ import {
 } from '@nestjs/common';
 import { RequestService } from './request.service';
 import { Response } from 'express';
+import { UserDocument } from '../user/schema/user.schema';
+import { QueueService } from './queue.service';
 
 @Controller('request')
 export class RequestController {
-  constructor(private readonly requestService: RequestService) {}
+  constructor(
+    private readonly requestService: RequestService,
+    private readonly queueService: QueueService,
+  ) {}
 
   @Post()
   async createRequest(
@@ -21,7 +26,7 @@ export class RequestController {
     @Body() body: ICreateRequest,
     @Res() res: Response,
   ) {
-    const { userId } = req.user;
+    const { _id, tier } = req.user as UserDocument;
     const { requestType, ipToScan, requestToScan } = body;
 
     const validRequestTypes = Object.values(RequestType);
@@ -46,7 +51,11 @@ export class RequestController {
     if (ipToScanIsIp.includes(requestType) && !isIP(ipToScan))
       throw new BadRequestException('iptoscan must be an ip');
 
-    await this.requestService.createRequest(body, userId);
+    const newRequest = await this.requestService.createRequest(body, _id);
+    await this.queueService.addToQueue({
+      requestId: newRequest._id,
+      tier,
+    });
 
     res.sendStatus(HttpStatus.CREATED);
     res.send();
