@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { ICreateRequest, RequestType, isIP } from '@jonzubi/securscan-shared';
 import { Types } from 'mongoose';
-import { RequestService } from './request.service';
+import { RequestService } from '../request.service';
 
 @Injectable()
 export class RequestGuard implements CanActivate {

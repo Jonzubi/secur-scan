@@ -12,8 +12,8 @@ import { RequestService } from './request.service';
 import { Response } from 'express';
 import { UserDocument } from '../user/schema/user.schema';
 import { QueueService } from './queue.service';
-import { PriceGuard } from './price.guard';
-import { RequestGuard } from './request.guard';
+import { PriceGuard } from './guards/price.guard';
+import { RequestGuard } from './guards/request.guard';
 
 @Controller('request')
 export class RequestController {

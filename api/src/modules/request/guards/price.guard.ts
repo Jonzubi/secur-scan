@@ -4,9 +4,9 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { UserDocument } from '../user/schema/user.schema';
+import { UserDocument } from '../../user/schema/user.schema';
 import { ICreateRequest, REQUEST_PRICES } from '@jonzubi/securscan-shared';
-import { UserService } from '../user/user.service';
+import { UserService } from '../../user/user.service';
 
 @Injectable()
 export class PriceGuard implements CanActivate {
