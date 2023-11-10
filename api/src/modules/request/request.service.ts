@@ -19,5 +19,7 @@ export class RequestService {
     });
     return await modelRequest.save();
   }
-  async getRequests() {}
+  async getRequestById(requestId: Types.ObjectId) {
+    return await this.requestModel.findById(requestId);
+  }
 }

@@ -1,6 +1,5 @@
-import { ICreateRequest, RequestType, isIP } from '@jonzubi/securscan-shared';
+import { ICreateRequest } from '@jonzubi/securscan-shared';
 import {
-  BadRequestException,
   Body,
   Controller,
   HttpStatus,
@@ -14,6 +13,7 @@ import { Response } from 'express';
 import { UserDocument } from '../user/schema/user.schema';
 import { QueueService } from './queue.service';
 import { PriceGuard } from './price.guard';
+import { RequestGuard } from './request.guard';
 
 @Controller('request')
 export class RequestController {
@@ -23,36 +23,13 @@ export class RequestController {
   ) {}
 
   @Post()
-  @UseGuards(PriceGuard)
+  @UseGuards(RequestGuard, PriceGuard)
   async createRequest(
     @Req() req: any,
     @Body() body: ICreateRequest,
     @Res() res: Response,
   ) {
     const { _id, tier } = req.user as UserDocument;
-    const { requestType, ipToScan, requestToScan } = body;
-
-    const validRequestTypes = Object.values(RequestType);
-
-    if (!validRequestTypes.includes(requestType))
-      throw new BadRequestException('Invalid requestType');
-
-    const ipToScanNeedIn = [
-      RequestType.RESOLVE_DNS,
-      RequestType.SCAN_IP,
-      RequestType.DETAILED_SCAN,
-    ];
-    const requestToScanNeedIn = [RequestType.MITIGATION_ADVICES];
-    const ipToScanIsIp = [RequestType.SCAN_IP, RequestType.DETAILED_SCAN];
-
-    if (!ipToScan && ipToScanNeedIn.includes(requestType))
-      throw new BadRequestException('iptoscan is required');
-
-    if (!requestToScan && requestToScanNeedIn.includes(requestType))
-      throw new BadRequestException('requestToScan is required');
-
-    if (ipToScanIsIp.includes(requestType) && !isIP(ipToScan))
-      throw new BadRequestException('iptoscan must be an ip');
 
     const newRequest = await this.requestService.createRequest(body, _id);
     await this.queueService.addToQueue({
