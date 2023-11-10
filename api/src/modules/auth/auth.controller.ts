@@ -14,7 +14,7 @@ import { Public } from 'src/decorators/IsPublic';
 import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
 import { Response } from 'express';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { UserDocument } from '../user/schema/user.schema';
 
 @Controller('auth')
