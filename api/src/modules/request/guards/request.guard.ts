@@ -4,9 +4,10 @@ import {
   Injectable,
   BadRequestException,
 } from '@nestjs/common';
-import { ICreateRequest, RequestType, isIP } from '@jonzubi/securscan-shared';
+import { ICreateRequest, RequestType } from '@jonzubi/securscan-shared';
 import { Types } from 'mongoose';
 import { RequestService } from '../request.service';
+import { isIP } from 'net';
 
 @Injectable()
 export class RequestGuard implements CanActivate {
@@ -36,8 +37,8 @@ export class RequestGuard implements CanActivate {
     if (!requestToScan && requestToScanNeedIn.includes(requestType))
       throw new BadRequestException('requestToScan is required');
 
-    if (ipToScanIsIp.includes(requestType) && !isIP(ipToScan))
-      throw new BadRequestException('iptoscan must be an ip');
+    if (ipToScanIsIp.includes(requestType) && isIP(ipToScan) !== 4)
+      throw new BadRequestException('iptoscan must be an ipv4 address');
 
     if (requestType === RequestType.MITIGATION_ADVICES) {
       if (!Types.ObjectId.isValid(requestToScan))
