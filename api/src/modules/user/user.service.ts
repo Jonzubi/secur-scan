@@ -44,4 +44,11 @@ export class UserService {
       { $inc: { tokens: -amount } },
     );
   }
+
+  async addToken(userId: Types.ObjectId, amount: number) {
+    await this.userModel.updateOne(
+      { _id: userId },
+      { $inc: { tokens: amount } },
+    );
+  }
 }
