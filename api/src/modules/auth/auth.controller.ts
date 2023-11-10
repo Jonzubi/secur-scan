@@ -1,4 +1,4 @@
-import { ISignIn, IUser } from '@jonzubi/securscan-shared';
+import { ISignIn } from '@jonzubi/securscan-shared';
 import {
   Body,
   Controller,
