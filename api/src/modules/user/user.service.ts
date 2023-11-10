@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './schema/user.schema';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { ICreateUser, IUser, Tier } from '@jonzubi/securscan-shared';
 import { hashPassword } from 'src/utils/functions/bcrypt';
 import { DEFAULT_INITIAL_TOKENS } from 'src/utils/constants/user';
@@ -36,5 +36,12 @@ export class UserService {
       email,
     });
     return foundUser;
+  }
+
+  async subtractToken(userId: Types.ObjectId, amount: number) {
+    await this.userModel.updateOne(
+      { _id: userId },
+      { $inc: { tokens: -amount } },
+    );
   }
 }

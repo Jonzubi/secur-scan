@@ -7,11 +7,13 @@ import {
   Post,
   Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { RequestService } from './request.service';
 import { Response } from 'express';
 import { UserDocument } from '../user/schema/user.schema';
 import { QueueService } from './queue.service';
+import { PriceGuard } from './price.guard';
 
 @Controller('request')
 export class RequestController {
@@ -21,6 +23,7 @@ export class RequestController {
   ) {}
 
   @Post()
+  @UseGuards(PriceGuard)
   async createRequest(
     @Req() req: any,
     @Body() body: ICreateRequest,
