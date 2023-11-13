@@ -7,8 +7,6 @@ import { ConfigService } from '@nestjs/config/dist';
 import { UserModule } from '../user/user.module';
 import { AuthModule } from '../auth/auth.module';
 import { MailModule } from '../mail/mail.module';
-import { MailerModule } from '@nestjs-modules/mailer';
-import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { RequestModule } from '../request/request.module';
 
 @Module({
@@ -23,16 +21,6 @@ import { RequestModule } from '../request/request.module';
       useFactory: async (config: ConfigService) => ({
         uri: config.get<string>('DB_URL'),
       }),
-    }),
-    MailerModule.forRoot({
-      transport: 'smtps://user@domain.com:pass@smtp.domain.com',
-      template: {
-        dir: process.cwd() + '/templates/',
-        adapter: new HandlebarsAdapter(),
-        options: {
-          strict: true,
-        },
-      },
     }),
     UserModule,
     AuthModule,

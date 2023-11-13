@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { Tier } from '@jonzubi/securscan-shared';
-import { Types } from 'mongoose';
 import {
   DEFAULT_INITIAL_TIER,
   DEFAULT_INITIAL_TOKENS,
@@ -11,9 +10,6 @@ export type UserDocument = HydratedDocument<User>;
 
 @Schema()
 export class User {
-  @Prop({ type: Types.ObjectId })
-  _id: Types.ObjectId;
-
   @Prop({ required: true, unique: true })
   email: string;
 
