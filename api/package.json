@@ -8,6 +8,7 @@
     "@nestjs/jwt": "^10.1.1",
     "@nestjs/mongoose": "^10.0.1",
     "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/schedule": "^4.0.0",
     "googleapis": "^126.0.1",
     "mongoose": "^7.5.2",
     "reflect-metadata": "^0.1.13",
