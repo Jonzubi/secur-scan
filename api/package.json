@@ -9,6 +9,7 @@
     "@nestjs/platform-express": "^10.2.8",
     "@nestjs/schedule": "^4.0.0",
     "googleapis": "^128.0.0",
+    "handlebars": "^4.7.8",
     "mongoose": "^8.0.0",
     "reflect-metadata": "^0.1.13",
     "resend": "2.0.0",
