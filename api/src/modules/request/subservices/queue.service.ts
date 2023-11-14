@@ -9,11 +9,13 @@ import { Model, Types } from 'mongoose';
 import { Tier } from '@jonzubi/securscan-shared';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { RequestDocument } from '../schema/request.schema';
+import { RequestResolveService } from './requestResolve.service';
 
 @Injectable()
 export class QueueService {
   constructor(
     @InjectModel(Queue.name) private queueModel: Model<QueueDocument>,
+    private readonly requestResolveService: RequestResolveService,
   ) {}
 
   async addToQueue({
@@ -40,6 +42,12 @@ export class QueueService {
   @Cron(CronExpression.EVERY_5_SECONDS)
   async handleFreeQueue() {
     const queue = await this.getNextRequestByTier(Tier.FREE);
+    if (!queue) return;
+
+    const res = await this.requestResolveService.resolveQueueRequest(
+      queue.requestId,
+    );
+    console.log(res);
   }
 
   async getNextRequestByTier(tier: Tier): Promise<PopulatedQueueDocument> {
