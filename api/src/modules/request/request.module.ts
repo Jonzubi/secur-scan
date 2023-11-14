@@ -3,7 +3,7 @@ import { RequestController } from './request.controller';
 import { RequestService } from './request.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Request, RequestSchema } from './schema/request.schema';
-import { QueueService } from './queue.service';
+import { QueueService } from './subservices/queue.service';
 import { Queue, QueueSchema } from './schema/queue.schema';
 import { UserModule } from '../user/user.module';
 

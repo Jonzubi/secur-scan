@@ -11,7 +11,7 @@ import {
 import { RequestService } from './request.service';
 import { Response } from 'express';
 import { UserDocument } from '../user/schema/user.schema';
-import { QueueService } from './queue.service';
+import { QueueService } from './subservices/queue.service';
 import { PriceGuard } from './guards/price.guard';
 import { RequestGuard } from './guards/request.guard';
 

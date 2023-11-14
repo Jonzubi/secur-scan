@@ -4,11 +4,11 @@ import {
   PopulatedQueueDocument,
   Queue,
   QueueDocument,
-} from './schema/queue.schema';
+} from '../schema/queue.schema';
 import { Model, Types } from 'mongoose';
 import { Tier } from '@jonzubi/securscan-shared';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { RequestDocument } from './schema/request.schema';
+import { RequestDocument } from '../schema/request.schema';
 
 @Injectable()
 export class QueueService {
