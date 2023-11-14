@@ -27,13 +27,11 @@ export class MailService {
       )}/user/verify/${verificationToken}`,
     });
 
-    const emailResponse = await this.resend.emails.send({
+    await this.resend.emails.send({
       from: 'SecurScan <onboarding@resend.dev>',
       to: email,
       subject: 'Verify mail',
       html,
     });
-
-    console.log(emailResponse);
   }
 }
