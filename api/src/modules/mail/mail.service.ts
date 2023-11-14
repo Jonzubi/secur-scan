@@ -28,7 +28,7 @@ export class MailService {
     });
 
     const emailResponse = await this.resend.emails.send({
-      from: 'SecurScan <noreply@securscan.com>',
+      from: 'SecurScan <onboarding@resend.dev>',
       to: email,
       subject: 'Verify mail',
       html,
