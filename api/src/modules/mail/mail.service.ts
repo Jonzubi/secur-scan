@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { ISendMail } from './mail';
 import { ConfigService } from '@nestjs/config';
 import { Resend } from 'resend';
 import handlebars from 'handlebars';
 import { readFileSync } from 'fs';
+import { ISendMail } from './interfaces/mail';
 
 @Injectable()
 export class MailService {

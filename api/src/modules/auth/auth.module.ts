@@ -3,7 +3,6 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { APP_GUARD } from '@nestjs/core';
-import { HttpService } from 'src/services/http-service/http-service.service';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { UserModule } from '../user/user.module';
@@ -18,7 +17,6 @@ import { User, UserSchema } from '../user/schema/user.schema';
       provide: APP_GUARD,
       useClass: AuthGuard,
     },
-    HttpService,
   ],
   imports: [
     UserModule,
