@@ -1,8 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Queue, QueueDocument } from './schema/queue.schema';
+import {
+  PopulatedQueueDocument,
+  Queue,
+  QueueDocument,
+} from './schema/queue.schema';
 import { Model, Types } from 'mongoose';
 import { Tier } from '@jonzubi/securscan-shared';
+import { Cron, CronExpression } from '@nestjs/schedule';
+import { RequestDocument } from './schema/request.schema';
 
 @Injectable()
 export class QueueService {
@@ -29,5 +35,18 @@ export class QueueService {
     });
 
     return await queue.save();
+  }
+
+  @Cron(CronExpression.EVERY_5_SECONDS)
+  async handleFreeQueue() {
+    const queue = await this.getNextRequestByTier(Tier.FREE);
+  }
+
+  async getNextRequestByTier(tier: Tier): Promise<PopulatedQueueDocument> {
+    return await this.queueModel
+      .findOne({ tier })
+      .sort({ priority: 1, reqTimeSpan: 1 })
+      .populate<{ requestId: RequestDocument }>('requestId')
+      .exec();
   }
 }

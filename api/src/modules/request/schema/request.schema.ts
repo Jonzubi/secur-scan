@@ -1,8 +1,8 @@
 import { RequestType } from '@jonzubi/securscan-shared';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose';
+import { HydratedDocument, Types } from 'mongoose';
 
-export type RequestDocument = Request & Document;
+export type RequestDocument = HydratedDocument<Request>;
 
 @Schema()
 export class Request {
