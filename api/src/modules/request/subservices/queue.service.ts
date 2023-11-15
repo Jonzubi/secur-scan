@@ -7,9 +7,10 @@ import {
 } from '../schema/queue.schema';
 import { Model, Types } from 'mongoose';
 import { Tier } from '@jonzubi/securscan-shared';
-import { Cron, CronExpression } from '@nestjs/schedule';
+import { Cron } from '@nestjs/schedule';
 import { RequestDocument } from '../schema/request.schema';
 import { RequestResolveService } from './requestResolve.service';
+import { FREE_QUEUE_INTERVAL } from 'src/utils/constants/queue';
 
 @Injectable()
 export class QueueService {
@@ -39,7 +40,7 @@ export class QueueService {
     return await queue.save();
   }
 
-  @Cron(CronExpression.EVERY_5_SECONDS)
+  @Cron(FREE_QUEUE_INTERVAL)
   async handleFreeQueue() {
     const queue = await this.getNextRequestByTier(Tier.FREE);
     if (!queue) return;
