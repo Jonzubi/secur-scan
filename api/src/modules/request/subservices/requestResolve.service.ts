@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import * as dns from 'dns';
 import { RequestDocument } from '../schema/request.schema';
 import { RequestType } from '@jonzubi/securscan-shared';
 import {
@@ -8,6 +7,7 @@ import {
 } from '../schema/requestResolve.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { domainToIP } from 'src/utils/functions/dns';
 
 @Injectable()
 export class RequestResolveService {
@@ -28,13 +28,14 @@ export class RequestResolveService {
   };
 
   async resolveDNS(request: RequestDocument): Promise<RequestResolveDocument> {
-    const ip = await this.domainToIP(request.ipToScan);
+    const ip = await domainToIP(request.ipToScan);
     const resolve = new this.requestResolveModel({
       requestId: request._id,
       resolveDNS: ip,
     });
     return await resolve.save();
   }
+
   async scanIP(request: RequestDocument): Promise<RequestResolveDocument> {
     const scanIp = new this.requestResolveModel({
       requestId: request._id,
@@ -68,17 +69,5 @@ export class RequestResolveService {
   ): Promise<RequestResolveDocument> {
     const resolveFunction = this.resolveFunctions[request.requestType];
     return await resolveFunction.bind(this)(request);
-  }
-
-  async domainToIP(domain: string): Promise<string> {
-    return new Promise((resolve, reject) => {
-      dns.lookup(domain, (err, address) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(address);
-        }
-      });
-    });
   }
 }
