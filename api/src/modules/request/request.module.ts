@@ -7,6 +7,10 @@ import { QueueService } from './subservices/queue.service';
 import { Queue, QueueSchema } from './schema/queue.schema';
 import { UserModule } from '../user/user.module';
 import { RequestResolveService } from './subservices/requestResolve.service';
+import {
+  RequestResolve,
+  RequestResolveSchema,
+} from './schema/requestResolve.schema';
 
 @Module({
   controllers: [RequestController],
@@ -15,6 +19,7 @@ import { RequestResolveService } from './subservices/requestResolve.service';
     MongooseModule.forFeature([
       { name: Request.name, schema: RequestSchema },
       { name: Queue.name, schema: QueueSchema },
+      { name: RequestResolve.name, schema: RequestResolveSchema },
     ]),
     UserModule,
   ],

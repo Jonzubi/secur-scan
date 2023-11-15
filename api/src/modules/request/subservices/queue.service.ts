@@ -47,6 +47,8 @@ export class QueueService {
     const res = await this.requestResolveService.resolveQueueRequest(
       queue.requestId,
     );
+    // Delete the queue entry
+    await this.queueModel.deleteOne({ _id: queue._id });
     console.log(res);
   }
 
