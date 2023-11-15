@@ -44,12 +44,9 @@ export class QueueService {
     const queue = await this.getNextRequestByTier(Tier.FREE);
     if (!queue) return;
 
-    const res = await this.requestResolveService.resolveQueueRequest(
-      queue.requestId,
-    );
+    await this.requestResolveService.resolveQueueRequest(queue.requestId);
     // Delete the queue entry
     await this.queueModel.deleteOne({ _id: queue._id });
-    console.log(res);
   }
 
   async getNextRequestByTier(tier: Tier): Promise<PopulatedQueueDocument> {
