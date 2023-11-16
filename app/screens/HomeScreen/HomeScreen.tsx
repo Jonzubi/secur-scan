@@ -7,6 +7,7 @@ import RequestLink, {
 import { useTranslation } from 'react-i18next';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from '../../constants/colors';
+import { RequestType } from '@jonzubi/securscan-shared';
 
 const HomeScreen = () => {
   const { t } = useTranslation();
@@ -18,8 +19,7 @@ const HomeScreen = () => {
         <MaterialCommunityIcons name="web" size={24} color={colors.MAIN_RED} />
       ),
       description: t('homeScreen.requestLinkResolveDomainDescription'),
-      tokenCost: 5,
-      href: '/request/resolve-domain',
+      requestType: RequestType.RESOLVE_DNS,
     },
     {
       title: t('homeScreen.requestLinkScanIP'),
@@ -31,8 +31,7 @@ const HomeScreen = () => {
         />
       ),
       description: t('homeScreen.requestLinkScanIPDescription'),
-      tokenCost: 20,
-      href: '/request/scan-ip',
+      requestType: RequestType.SCAN_IP,
     },
     {
       title: t('homeScreen.requestLinkDetailedInfo'),
@@ -44,8 +43,7 @@ const HomeScreen = () => {
         />
       ),
       description: t('homeScreen.requestLinkDetailedInfoDescription'),
-      tokenCost: 50,
-      href: '/request/detailed-info',
+      requestType: RequestType.DETAILED_SCAN,
     },
     {
       title: t('homeScreen.requestLinkMitigationAdvices'),
@@ -57,8 +55,7 @@ const HomeScreen = () => {
         />
       ),
       description: t('homeScreen.requestLinkMitigationAdvicesDescription'),
-      tokenCost: 100,
-      href: '/request/mitigation-advices',
+      requestType: RequestType.MITIGATION_ADVICES,
     },
   ];
 
