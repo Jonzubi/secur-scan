@@ -54,6 +54,12 @@ export default function Layout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="resolve-dns"
+        options={{
+          href: null,
+        }}
+      />
     </Tabs>
   );
 }
