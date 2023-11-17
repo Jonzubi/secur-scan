@@ -6,6 +6,8 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.BACKGROUND,
     padding: 15,
+  },
+  viewContainer: {
     gap: 15,
   },
 });

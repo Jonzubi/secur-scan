@@ -60,8 +60,8 @@ const HomeScreen = () => {
   ];
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      <View style={styles.viewContainer}>
         {requestLinkOptions.map((requestLinkOption) => (
           <RequestLink key={requestLinkOption.title} {...requestLinkOption} />
         ))}
