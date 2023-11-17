@@ -13,6 +13,7 @@ const ResolveDnsScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = () => {};
+
   return (
     <View style={styles.container}>
       <View style={styles.formContainer}>
