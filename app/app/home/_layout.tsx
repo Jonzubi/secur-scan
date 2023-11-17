@@ -60,6 +60,24 @@ export default function Layout() {
           href: null,
         }}
       />
+      <Tabs.Screen
+        name="scan-ip"
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="detailed-scan"
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="mitigation-advices"
+        options={{
+          href: null,
+        }}
+      />
     </Tabs>
   );
 }
