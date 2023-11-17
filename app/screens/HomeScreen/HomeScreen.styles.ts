@@ -9,5 +9,6 @@ export default StyleSheet.create({
   },
   viewContainer: {
     gap: 15,
+    marginBottom: 30,
   },
 });
