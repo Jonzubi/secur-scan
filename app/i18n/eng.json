@@ -39,5 +39,10 @@
     "requestLinkDetailedInfoDescription": "Get detailed information about an IP address",
     "requestLinkMitigationAdvices": "Mitigation advices",
     "requestLinkMitigationAdvicesDescription": "Get mitigation advices for a detailed information process"
+  },
+  "resolveDnsScreen": {
+    "title": "Resolve DNS",
+    "domainPlaceholder": "Insert domain here...",
+    "submitButton": "Process"
   }
 }
