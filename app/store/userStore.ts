@@ -6,6 +6,7 @@ export type UserStore = UserState & UserStateMethods;
 type UserStateMethods = {
   setUserData: (userData: UserState) => void;
   setUserEmail: (email: string) => void;
+  setTokens: (tokens: number) => void;
   resetUserData: () => void;
 };
 export interface UserState {
@@ -22,6 +23,7 @@ export const useUserStore = create<UserStore>((set) => ({
   tokens: 0,
   setUserData: (userData: UserState) => set(userData),
   setUserEmail: (email: string) => set({ email }),
+  setTokens: (tokens: number) => set({ tokens }),
   resetUserData: () =>
     set({
       email: '',

@@ -10,10 +10,11 @@ import { createRequest } from '../../api/request';
 import { useUserStore } from '../../store/userStore';
 import { RequestType } from '@jonzubi/securscan-shared';
 import { useRouter } from 'expo-router';
+import { getProfile } from '../../api/user';
 
 const ResolveDnsScreen = () => {
   const { t } = useTranslation();
-  const { access_token } = useUserStore();
+  const { access_token, setTokens } = useUserStore();
   const router = useRouter();
 
   const [domain, setDomain] = useState('');
@@ -28,6 +29,12 @@ const ResolveDnsScreen = () => {
         requestType: RequestType.RESOLVE_DNS,
         requestToScan: '',
       });
+
+      const {
+        data: { tokens },
+      } = await getProfile(access_token);
+      setTokens(tokens);
+
       router.push('/home/operations');
     } catch (error) {
       console.log(error);
