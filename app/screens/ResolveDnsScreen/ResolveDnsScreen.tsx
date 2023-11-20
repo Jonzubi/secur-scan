@@ -6,19 +6,43 @@ import { Input } from '@rneui/themed';
 import colors from '../../constants/colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
+import { createRequest } from '../../api/request';
+import { useUserStore } from '../../store/userStore';
+import { RequestType } from '@jonzubi/securscan-shared';
+import { useRouter } from 'expo-router';
 
 const ResolveDnsScreen = () => {
   const { t } = useTranslation();
+  const { access_token } = useUserStore();
+  const router = useRouter();
+
   const [domain, setDomain] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    setIsLoading(true);
+
+    try {
+      await createRequest(access_token, {
+        ipToScan: domain,
+        requestType: RequestType.RESOLVE_DNS,
+        requestToScan: '',
+      });
+      router.push('/home/operations');
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+      setDomain('');
+    }
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.formContainer}>
         <Text style={styles.formTitle}>{t('resolveDnsScreen.title')}</Text>
         <Input
+          value={domain}
           inputStyle={{ color: colors.WHITE }}
           placeholder={t('resolveDnsScreen.domainPlaceholder')}
           placeholderTextColor={colors.GRAY}
