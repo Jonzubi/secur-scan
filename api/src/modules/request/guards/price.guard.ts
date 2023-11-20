@@ -18,7 +18,7 @@ export class PriceGuard implements CanActivate {
     const { tokens } = request.user as UserDocument;
     const price = REQUEST_PRICES[requestType];
     if (tokens < price) {
-      throw new UnauthorizedException('Not enough tokens');
+      throw new UnauthorizedException('errors.notEnoughTokens');
     }
 
     await this.userService.subtractToken(request.user._id, price);

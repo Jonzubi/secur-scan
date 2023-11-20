@@ -32,26 +32,24 @@ export class RequestGuard implements CanActivate {
     const ipToScanIsIp = [RequestType.SCAN_IP, RequestType.DETAILED_SCAN];
 
     if (!ipToScan && ipToScanNeedIn.includes(requestType))
-      throw new BadRequestException('iptoscan is required');
+      throw new BadRequestException('errors.requiredIptoscan');
 
     if (!requestToScan && requestToScanNeedIn.includes(requestType))
-      throw new BadRequestException('requestToScan is required');
+      throw new BadRequestException('errors.requiredRequestToScan');
 
     if (ipToScanIsIp.includes(requestType) && isIP(ipToScan) !== 4)
-      throw new BadRequestException('iptoscan must be an ipv4 address');
+      throw new BadRequestException('errors.invalidIp');
 
     if (requestType === RequestType.MITIGATION_ADVICES) {
       if (!Types.ObjectId.isValid(requestToScan))
-        throw new BadRequestException(
-          'requestToScan must be a valid requestId',
-        );
+        throw new BadRequestException('errors.invalidRequestToScanObjectId');
 
       const request = await this.requestService.getRequestById(
         requestToScan as unknown as Types.ObjectId,
       );
 
       if (request.requestType !== RequestType.DETAILED_SCAN)
-        throw new BadRequestException('requestToScan must be a detailed scan');
+        throw new BadRequestException('errors.invalidRequestToScanType');
     }
 
     return true;
