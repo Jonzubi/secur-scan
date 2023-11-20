@@ -6,7 +6,7 @@ export const getRequests = (token: string) =>
   axios.get(
     `${process.env.EXPO_PUBLIC_API_URL}/request`,
     getHeaderWithAccessToken(token),
-  );
+  ); // TODO: Type the response
 
 export const createRequest = (token: string, body: ICreateRequest) =>
   axios.post(
