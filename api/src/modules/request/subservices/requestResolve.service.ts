@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { RequestDocument } from '../schema/request.schema';
-import { RequestType } from '@jonzubi/securscan-shared';
+import { Request, RequestDocument } from '../schema/request.schema';
+import { RequestStatus, RequestType } from '@jonzubi/securscan-shared';
 import {
   RequestResolve,
   RequestResolveDocument,
@@ -14,6 +14,8 @@ export class RequestResolveService {
   constructor(
     @InjectModel(RequestResolve.name)
     private requestResolveModel: Model<RequestResolve>,
+    @InjectModel(Request.name)
+    private requestModel: Model<RequestDocument>,
   ) {}
 
   // A dictionary relating the requestType and the resolve function
@@ -64,10 +66,37 @@ export class RequestResolveService {
     return mitigationAdvices;
   }
 
+  async createErroredRequestResolve(
+    request: RequestDocument,
+    errorInfo: string,
+  ): Promise<RequestResolveDocument> {
+    const errorRequestResolve = new this.requestResolveModel({
+      requestId: request._id,
+      errorInfo,
+    });
+    return await errorRequestResolve.save();
+  }
+
   async resolveQueueRequest(
     request: RequestDocument,
   ): Promise<RequestResolveDocument> {
     const resolveFunction = this.resolveFunctions[request.requestType];
-    return await resolveFunction.bind(this)(request);
+    try {
+      const resolve = await resolveFunction.bind(this)(request);
+      await this.requestModel.updateOne(
+        { _id: request._id },
+        { status: RequestStatus.SUCCESS },
+      );
+      return resolve;
+    } catch (error) {
+      await this.createErroredRequestResolve(
+        request,
+        JSON.stringify(error.message),
+      );
+      await this.requestModel.updateOne(
+        { _id: request._id },
+        { status: RequestStatus.ERROR },
+      );
+    }
   }
 }
