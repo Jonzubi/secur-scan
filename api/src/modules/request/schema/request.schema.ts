@@ -1,4 +1,4 @@
-import { RequestType } from '@jonzubi/securscan-shared';
+import { RequestStatus, RequestType } from '@jonzubi/securscan-shared';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 
@@ -17,6 +17,9 @@ export class Request {
 
   @Prop()
   requestToScan: string;
+
+  @Prop({ type: String, enum: RequestStatus, default: RequestStatus.PENDING })
+  status: RequestStatus;
 }
 
 export const RequestSchema = SchemaFactory.createForClass(Request);
