@@ -19,6 +19,9 @@ export class RequestResolve {
 
   @Prop({ type: String })
   mitigationAdvices: string;
+
+  @Prop({ type: String })
+  errorInfo: string;
 }
 
 export const RequestResolveSchema =
