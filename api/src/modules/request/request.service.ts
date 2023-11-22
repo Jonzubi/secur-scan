@@ -19,7 +19,22 @@ export class RequestService {
     });
     return await modelRequest.save();
   }
+
   async getRequestById(requestId: Types.ObjectId) {
     return await this.requestModel.findById(requestId);
+  }
+
+  async getRequests(userId: Types.ObjectId): Promise<RequestDocument[]> {
+    return await this.requestModel.aggregate([
+      { $match: { userId: userId } },
+      {
+        $lookup: {
+          from: 'requestresolves',
+          localField: '_id',
+          foreignField: 'requestId',
+          as: 'requestResolve',
+        },
+      },
+    ]);
   }
 }

@@ -2,6 +2,7 @@ import { ICreateRequest } from '@jonzubi/securscan-shared';
 import {
   Body,
   Controller,
+  Get,
   HttpStatus,
   Post,
   Req,
@@ -38,6 +39,12 @@ export class RequestController {
     });
 
     res.sendStatus(HttpStatus.CREATED);
-    res.send();
+  }
+
+  @Get()
+  async getRequests(@Req() req: any, @Res() res: Response) {
+    const { _id } = req.user as UserDocument;
+    const requests = await this.requestService.getRequests(_id);
+    res.status(HttpStatus.OK).send(requests);
   }
 }
