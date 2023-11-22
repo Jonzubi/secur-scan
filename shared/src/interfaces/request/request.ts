@@ -10,3 +10,9 @@ export enum RequestType {
   DETAILED_SCAN = 'DETAILED_SCAN',
   MITIGATION_ADVICES = 'MITIGATION_ADVICES',
 }
+
+export enum RequestStatus {
+  PENDING = 'PENDING',
+  SUCCESS = 'SUCCESS',
+  ERROR = 'ERROR',
+}
