@@ -20,7 +20,7 @@ const StatusToIcon = ({ status }: IStatusToIcon) => {
         backgroundColor:
           status === RequestStatus.SUCCESS
             ? colors.MAIN_GREEN
-            : colors.MAIN_RED,
+            : colors.SECONDARY_RED,
       }}
     />
   );
