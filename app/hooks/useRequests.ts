@@ -1,7 +1,7 @@
-import { getRequests } from 'api/request';
+import { getRequests } from '../api/request';
 import { useEffect, useState } from 'react';
 import { useUserStore } from '../store/userStore';
-import { IGetRequest } from 'api/interfaces/request';
+import { IGetRequest } from '../api/interfaces/request';
 
 export const useRequests = () => {
   const [data, setData] = useState<IGetRequest[]>([]);
