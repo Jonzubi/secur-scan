@@ -1,7 +1,9 @@
+import { RequestType } from '@jonzubi/securscan-shared';
+
 export type IGetRequest = {
   _id: string;
   userId: string;
-  requestType: string;
+  requestType: RequestType;
   ipToScan: string;
   __v: number;
   requestResolve: IResolve[];
