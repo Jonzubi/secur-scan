@@ -1,13 +1,18 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import React from 'react';
 import styles from './Operation.styles';
 import { IGetRequest } from '../../api/interfaces/request';
 import IconRequestType from '../../components/IconRequestType/IconRequestType';
+import StatusToIcon from './StatusToIcon';
 
-const Operation = ({ requestType }: IGetRequest) => {
+const Operation = ({ requestType, ipToScan, status }: IGetRequest) => {
   return (
     <View style={styles.container}>
-      <IconRequestType requestType={requestType} />
+      <View style={{ flexDirection: 'row', gap: 10 }}>
+        <IconRequestType requestType={requestType} />
+        <Text style={styles.targetText}>{ipToScan}</Text>
+      </View>
+      <StatusToIcon status={status} />
     </View>
   );
 };

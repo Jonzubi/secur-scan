@@ -8,5 +8,12 @@ export default StyleSheet.create({
     paddingVertical: 20,
     borderBottomColor: colors.GRAY,
     borderBottomWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  targetText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: colors.WHITE,
   },
 });
