@@ -1,5 +1,5 @@
 import { getRequests } from '../api/request';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useUserStore } from '../store/userStore';
 import { IGetRequest } from '../api/interfaces/request';
 
@@ -9,18 +9,21 @@ export const useRequests = () => {
   const [loading, setLoading] = useState(true);
   const { access_token } = useUserStore();
 
-  useEffect(() => {
-    (async function () {
-      try {
-        const response = await getRequests(access_token);
-        setData(response.data);
-      } catch (error: any) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await getRequests(access_token);
+      setData(response.data);
+    } catch (error: any) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [access_token]);
 
-  return { data, error, loading };
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return { data, error, loading, refetch: fetchData };
 };
