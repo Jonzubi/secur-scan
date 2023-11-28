@@ -9,6 +9,7 @@ import { AuthModule } from '../auth/auth.module';
 import { MailModule } from '../mail/mail.module';
 import { RequestModule } from '../request/request.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { SocketModule } from '../socket/socket.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     AuthModule,
     MailModule,
     RequestModule,
+    SocketModule,
     ScheduleModule.forRoot(),
   ],
   controllers: [AppController],

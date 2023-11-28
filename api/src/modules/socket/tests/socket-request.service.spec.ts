@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { SocketRequestService } from '../socket-request.service';
+import { SocketRequestService } from '../socket-request.gateway';
 
 describe('SocketRequestService', () => {
   let service: SocketRequestService;
