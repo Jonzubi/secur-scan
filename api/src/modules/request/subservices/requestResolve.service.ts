@@ -8,6 +8,7 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { domainToIP } from 'src/utils/functions/dns';
+import { EventsGateway } from 'src/modules/socket/events.gateway';
 
 @Injectable()
 export class RequestResolveService {
@@ -16,6 +17,7 @@ export class RequestResolveService {
     private requestResolveModel: Model<RequestResolve>,
     @InjectModel(Request.name)
     private requestModel: Model<RequestDocument>,
+    private eventsGateway: EventsGateway,
   ) {}
 
   // A dictionary relating the requestType and the resolve function
@@ -87,6 +89,7 @@ export class RequestResolveService {
         { _id: request._id },
         { status: RequestStatus.SUCCESS },
       );
+      this.eventsGateway.emitRequestFinished(request.userId);
       return resolve;
     } catch (error) {
       await this.createErroredRequestResolve(

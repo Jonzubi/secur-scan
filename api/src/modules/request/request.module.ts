@@ -11,10 +11,16 @@ import {
   RequestResolve,
   RequestResolveSchema,
 } from './schema/requestResolve.schema';
+import { EventsGateway } from '../socket/events.gateway';
 
 @Module({
   controllers: [RequestController],
-  providers: [RequestService, QueueService, RequestResolveService],
+  providers: [
+    RequestService,
+    QueueService,
+    RequestResolveService,
+    EventsGateway,
+  ],
   imports: [
     MongooseModule.forFeature([
       { name: Request.name, schema: RequestSchema },

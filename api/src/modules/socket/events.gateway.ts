@@ -43,7 +43,7 @@ export class EventsGateway
   }
 
   emitRequestFinished(userId: Types.ObjectId) {
-    const socketId = this.clients.get(userId);
+    const socketId = [...this.clients].find(([id]) => id.equals(userId))?.[1];
     const client = this.server.sockets.sockets.get(socketId);
     if (client) {
       client.emit('requestFinished');
