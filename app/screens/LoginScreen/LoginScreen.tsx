@@ -20,7 +20,7 @@ import * as SecureStore from 'expo-secure-store';
 
 const LoginScreen = () => {
   const { t } = useTranslation();
-  const { setUserData, tier, tokens } = useUserStore();
+  const { setUserData } = useUserStore();
   const router = useRouter();
 
   const [email, setEmail] = useState('');
@@ -49,8 +49,9 @@ const LoginScreen = () => {
     setIsLoading(true);
     try {
       const userData = await login({ email, password });
-      const { access_token } = userData.data;
+      const { access_token, userId, tier, tokens } = userData.data;
       setUserData({
+        userId,
         access_token,
         email: userData.data.email,
         tier,
@@ -58,7 +59,7 @@ const LoginScreen = () => {
       });
       await SecureStore.setItemAsync('access_token', access_token);
       setIsLoading(false);
-      router.replace('home');
+      router.replace('/home/');
     } catch (error) {
       if ((error as AxiosError)?.response?.status === 401) {
         const modalText = (error as AxiosError)?.response?.data?.message;
@@ -104,7 +105,7 @@ const LoginScreen = () => {
         />
         <View style={styles.registerView}>
           <Text style={styles.youNewText}>{t('loginScreen.youNew')}</Text>
-          <Link href={'register'} style={styles.registerText}>
+          <Link href={'/auth/register'} style={styles.registerText}>
             <Text>{t('loginScreen.goRegister')}</Text>
           </Link>
         </View>

@@ -27,9 +27,7 @@ const RegisterScreen = () => {
   const [errorEmail, setErrorEmail] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { modalText, setModalText, setShowModal, showModal } = useModal(
-    t('errors.generic'),
-  );
+  const { modalText, setShowModal, showModal } = useModal(t('errors.generic'));
 
   const emailRef = useRef<any>(null);
   const passwordRef = useRef<any>(null);
@@ -61,7 +59,7 @@ const RegisterScreen = () => {
       await createUser({ email, password });
       setUserEmail(email);
       setIsLoading(false);
-      router.replace('verify-mail');
+      router.replace('/auth/verify-mail');
     } catch (error) {
       console.log(JSON.stringify(error));
       setShowModal(true);

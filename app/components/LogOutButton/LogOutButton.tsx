@@ -15,7 +15,7 @@ const LogOutButton = () => {
   const handleLogOut = async () => {
     resetUserData();
     await SecureStore.setItemAsync('access_token', '');
-    router.replace('login');
+    router.replace('/auth/login');
   };
   return (
     <TouchableOpacity onPress={handleLogOut} style={styles.container}>
