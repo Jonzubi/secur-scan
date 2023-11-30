@@ -3,7 +3,7 @@ import { Redirect } from 'expo-router';
 
 const index = () => {
   const { access_token } = useUserStore();
-  console.log(access_token);
+
   if (access_token === '') {
     return <Redirect href={'/auth/login'} />;
   }
