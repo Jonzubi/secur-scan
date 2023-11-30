@@ -10,6 +10,7 @@ type UserStateMethods = {
   resetUserData: () => void;
 };
 export interface UserState {
+  userId: string;
   email: string;
   access_token: string;
   tokens: number;
@@ -17,6 +18,7 @@ export interface UserState {
 }
 
 export const useUserStore = create<UserStore>((set) => ({
+  userId: '',
   email: '',
   access_token: '',
   tier: Tier.FREE,
