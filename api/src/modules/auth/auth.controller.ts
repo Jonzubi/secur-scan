@@ -8,13 +8,11 @@ import {
   Req,
   Res,
   UnauthorizedException,
-  UseGuards,
 } from '@nestjs/common';
 import { Public } from 'src/decorators/IsPublic';
 import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
 import { Response } from 'express';
-import { AuthGuard } from './guards/auth.guard';
 import { UserDocument } from '../user/schema/user.schema';
 
 @Controller('auth')
@@ -32,7 +30,6 @@ export class AuthController {
     res.send(userData);
   }
 
-  @UseGuards(AuthGuard)
   @Get('profile')
   async getProfile(@Req() req, @Res() res: Response) {
     const { email } = req.user as UserDocument;
