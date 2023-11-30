@@ -6,6 +6,7 @@ export interface ISignIn {
 }
 
 export interface IGetProfile {
+  userId: string;
   email: string;
   tier: Tier;
   tokens: number;

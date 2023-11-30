@@ -19,7 +19,7 @@
   },
   "description": "",
   "devDependencies": {
-    "@jonzubi/securscan-shared": "0.0.27",
+    "@jonzubi/securscan-shared": "0.0.28",
     "@nestjs/cli": "^10.2.1",
     "@nestjs/schematics": "^10.0.3",
     "@nestjs/testing": "^10.2.8",
