@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { comparePassword } from 'src/utils/functions/bcrypt';
-import { ISignIn } from '@jonzubi/securscan-shared';
+import { IResSignIn, ISignIn } from '@jonzubi/securscan-shared';
 
 @Injectable()
 export class AuthService {
@@ -11,7 +11,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signIn(user: ISignIn) {
+  async signIn(user: ISignIn): Promise<IResSignIn> {
     const { password, email } = user;
     const foundUser = await this.userService.findUserByEmail(email);
 
@@ -28,6 +28,9 @@ export class AuthService {
       _id: foundUser._id.toString(),
     });
     return {
+      userId: foundUser._id.toString(),
+      tier: foundUser.tier,
+      tokens: foundUser.tokens,
       access_token,
       email,
     };

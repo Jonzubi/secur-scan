@@ -25,9 +25,16 @@ export class AuthController {
   @Post('login')
   @Public()
   async signIn(@Body() user: ISignIn, @Res() res: Response): Promise<any> {
-    const userData = await this.authService.signIn(user);
+    const { userId, email, tier, tokens, access_token } =
+      await this.authService.signIn(user);
     res.status(HttpStatus.OK);
-    res.send(userData);
+    res.send({
+      userId,
+      email,
+      tier,
+      tokens,
+      access_token,
+    });
   }
 
   @Get('profile')
