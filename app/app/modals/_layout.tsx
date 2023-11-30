@@ -20,6 +20,12 @@ const _layout = () => {
           headerTitle: t('resolveDnsScreen.title'),
         }}
       />
+      <Stack.Screen
+        name="scan-ip"
+        options={{
+          headerTitle: t('scanIpScreen.title'),
+        }}
+      />
     </Stack>
   );
 };
