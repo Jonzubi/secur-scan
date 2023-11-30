@@ -29,7 +29,6 @@ export class EventsGateway
   }
 
   handleConnection(client: Socket) {
-    console.log(`Client connected: ${client.id}`);
     const userId = client.handshake.query.userId as string;
     if (userId) {
       this.clients.set(new Types.ObjectId(userId), client.id);
