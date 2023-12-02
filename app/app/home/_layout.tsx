@@ -4,9 +4,14 @@ import colors from '../../constants/colors';
 import io from 'socket.io-client';
 import { useEffect } from 'react';
 import { useUserStore } from '../../store/userStore';
+import { useRequestStore } from '../../store/requestStore';
+import { getRequests } from '../../api/request';
+import { IGetRequest } from '../../api/interfaces/request';
 
 export default function Layout() {
-  const { userId } = useUserStore();
+  const { userId, access_token } = useUserStore();
+  const { setRequests } = useRequestStore();
+
   useEffect(() => {
     const socket = io(`${process.env.EXPO_PUBLIC_API_URL}`, {
       query: {
@@ -14,8 +19,16 @@ export default function Layout() {
       },
     });
 
-    socket.on('requestFinished', () => {
-      console.log('Request finished');
+    socket.on('requestFinished', async () => {
+      const auxRequests = (await getRequests(access_token)).data;
+      setRequests(
+        auxRequests.map((request: IGetRequest) => ({
+          id: request._id,
+          ipToScan: request.ipToScan,
+          type: request.requestType,
+          status: request.status,
+        })),
+      );
     });
 
     return () => {
