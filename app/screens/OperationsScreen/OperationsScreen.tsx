@@ -1,18 +1,38 @@
 import { View, RefreshControl, ScrollView } from 'react-native';
-import React, { useState } from 'react';
-import { useRequests } from '../../hooks/useRequests';
+import { useEffect, useState } from 'react';
 import styles from './OperationsScreen.styles';
 import { FlashList } from '@shopify/flash-list';
 import Operation from '../../components/Operation/Operation';
+import { useRequestStore } from '../../store/requestStore';
+import { getRequests } from '../../api/request';
+import { useUserStore } from '../../store/userStore';
+import { IGetRequest } from '../../api/interfaces/request';
 
 const OperationsScreen = () => {
-  const { data, error, loading, refetch } = useRequests();
+  const { requests, setRequests } = useRequestStore();
+  const { access_token } = useUserStore();
   const [refreshing, setRefreshing] = useState(false);
 
-  const onRefresh = React.useCallback(() => {
+  const refreshRequests = async () => {
+    const auxRequests = (await getRequests(access_token)).data;
+    setRequests(
+      auxRequests.map((request: IGetRequest) => ({
+        id: request._id,
+        ipToScan: request.ipToScan,
+        type: request.requestType,
+        status: request.status,
+      })),
+    );
+  };
+
+  useEffect(() => {
+    refreshRequests();
+  }, []);
+
+  const onRefresh = () => {
     setRefreshing(true);
-    refetch().finally(() => setRefreshing(false));
-  }, [refetch]);
+    refreshRequests().finally(() => setRefreshing(false));
+  };
 
   return (
     <View style={styles.container}>
@@ -22,9 +42,9 @@ const OperationsScreen = () => {
         }
       >
         <FlashList
-          data={data}
+          data={requests}
           renderItem={({ item }) => <Operation {...item} />}
-          keyExtractor={(item) => item._id}
+          keyExtractor={(item) => item.id}
           estimatedItemSize={100}
         />
       </ScrollView>
