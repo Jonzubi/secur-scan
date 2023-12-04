@@ -1,5 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
+import {
+  ShodanScanIpMinifiedDocument,
+  ShodanScanIpMinifiedSchema,
+} from './shodanScanIpMinified.schema';
 
 export type RequestResolveDocument = HydratedDocument<RequestResolve>;
 
@@ -11,8 +15,8 @@ export class RequestResolve {
   @Prop({ type: String })
   resolveDNS: string;
 
-  @Prop({ type: String })
-  scanIP: string;
+  @Prop({ type: ShodanScanIpMinifiedSchema })
+  scanIP: ShodanScanIpMinifiedDocument;
 
   @Prop({ type: String })
   detailedScan: string;

@@ -9,6 +9,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { domainToIP } from 'src/utils/functions/dns';
 import { EventsGateway } from 'src/modules/socket/events.gateway';
+import { ShodanService } from './shodan.service';
 
 @Injectable()
 export class RequestResolveService {
@@ -18,6 +19,7 @@ export class RequestResolveService {
     @InjectModel(Request.name)
     private requestModel: Model<RequestDocument>,
     private eventsGateway: EventsGateway,
+    private readonly shodanService: ShodanService,
   ) {}
 
   // A dictionary relating the requestType and the resolve function
@@ -40,12 +42,17 @@ export class RequestResolveService {
     return await resolve.save();
   }
 
-  async scanIP(request: RequestDocument): Promise<RequestResolveDocument> {
+  async scanIP({
+    ipToScan,
+    _id,
+  }: RequestDocument): Promise<RequestResolveDocument> {
+    const scanIpMinifiedData =
+      await this.shodanService.scanIpMinified(ipToScan);
     const scanIp = new this.requestResolveModel({
-      requestId: request._id,
-      scanIP: '',
+      requestId: _id,
+      scanIP: scanIpMinifiedData,
     });
-    return scanIp;
+    return await scanIp.save();
   }
 
   async detailedScan(

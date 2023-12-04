@@ -12,6 +12,9 @@ import {
   RequestResolveSchema,
 } from './schema/requestResolve.schema';
 import { EventsGateway } from '../socket/events.gateway';
+import { HttpModule } from '@nestjs/axios';
+import { ShodanService } from './subservices/shodan.service';
+import { ConfigService } from '@nestjs/config';
 
 @Module({
   controllers: [RequestController],
@@ -20,6 +23,8 @@ import { EventsGateway } from '../socket/events.gateway';
     QueueService,
     RequestResolveService,
     EventsGateway,
+    ShodanService,
+    ConfigService,
   ],
   imports: [
     MongooseModule.forFeature([
@@ -28,6 +33,7 @@ import { EventsGateway } from '../socket/events.gateway';
       { name: RequestResolve.name, schema: RequestResolveSchema },
     ]),
     UserModule,
+    HttpModule,
   ],
 })
 export class RequestModule {}
