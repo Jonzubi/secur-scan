@@ -6,17 +6,19 @@ import {
   QueueDocument,
 } from '../schema/queue.schema';
 import { Model, Types } from 'mongoose';
-import { Tier } from '@jonzubi/securscan-shared';
+import { RequestStatus, Tier } from '@jonzubi/securscan-shared';
 import { Cron } from '@nestjs/schedule';
 import { RequestDocument } from '../schema/request.schema';
 import { RequestResolveService } from './requestResolve.service';
 import { FREE_QUEUE_INTERVAL } from 'src/utils/constants/queue';
+import { RequestService } from '../request.service';
 
 @Injectable()
 export class QueueService {
   constructor(
     @InjectModel(Queue.name) private queueModel: Model<QueueDocument>,
     private readonly requestResolveService: RequestResolveService,
+    private readonly requestService: RequestService,
   ) {}
 
   async addToQueue({
@@ -45,8 +47,11 @@ export class QueueService {
     const queue = await this.getNextRequestByTier(Tier.FREE);
     if (!queue) return;
 
+    await this.requestService.updateRequestStatus(
+      queue._id,
+      RequestStatus.WORKING,
+    );
     await this.requestResolveService.resolveQueueRequest(queue.requestId);
-    // Delete the queue entry
     await this.queueModel.deleteOne({ _id: queue._id });
   }
 
