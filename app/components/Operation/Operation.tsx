@@ -13,10 +13,10 @@ const Operation = ({ type, ipToScan, status }: RequestState) => {
   const { t } = useTranslation();
 
   const typeToRoute: Record<RequestType, string> = {
-    RESOLVE_DNS: 'resolve-dns-finished',
-    SCAN_IP: 'scan-ip-finished',
-    DETAILED_SCAN: 'detailed-scan-finished',
-    MITIGATION_ADVICES: 'mitigation-advices-finished',
+    RESOLVE_DNS: 'modals/resolve-dns-finished',
+    SCAN_IP: 'modals/scan-ip-finished',
+    DETAILED_SCAN: 'modals/detailed-scan-finished',
+    MITIGATION_ADVICES: 'modals/mitigation-advices-finished',
   };
 
   const validStatuses = [RequestStatus.SUCCESS, RequestStatus.ERROR];
