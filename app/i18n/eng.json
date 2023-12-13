@@ -45,6 +45,9 @@
     "domainPlaceholder": "Insert domain here...",
     "submitButton": "Process"
   },
+  "resolveDnsFinishedScreen": {
+    "title": "Resolve DNS"
+  },
   "scanIpScreen": {
     "title": "Scan IP",
     "domainPlaceholder": "Insert IP here...",

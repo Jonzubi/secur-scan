@@ -21,9 +21,21 @@ const _layout = () => {
         }}
       />
       <Stack.Screen
+        name="resolve-dns-finished"
+        options={{
+          headerTitle: t('resolveDnsFinishedScreen.title'),
+        }}
+      />
+      <Stack.Screen
         name="scan-ip"
         options={{
           headerTitle: t('scanIpScreen.title'),
+        }}
+      />
+      <Stack.Screen
+        name="scan-ip-finished"
+        options={{
+          headerTitle: t('scanIpFinishedScreen.title'),
         }}
       />
     </Stack>
