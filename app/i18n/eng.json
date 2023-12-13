@@ -49,5 +49,8 @@
     "title": "Scan IP",
     "domainPlaceholder": "Insert IP here...",
     "submitButton": "Process"
+  },
+  "toasts": {
+    "operationNotFinished": "The operation has not finished yet"
   }
 }
