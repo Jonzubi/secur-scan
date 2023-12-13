@@ -5,3 +5,11 @@ export interface IShodanScanIpMinified {
   hostnames: string[];
   isp: string;
 }
+
+export interface IShodanScanIpMinifiedForDocument {
+  ports: number[];
+  vulns: number;
+  domains: string[];
+  hostnames: string[];
+  isp: string;
+}
