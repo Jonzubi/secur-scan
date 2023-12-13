@@ -109,7 +109,7 @@ export class RequestResolveService {
         RequestStatus.ERROR,
       );
     } finally {
-      this.eventsGateway.emitRequestFinished(request.userId);
+      this.eventsGateway.emitRequestStatusChange(request.userId);
     }
   }
 }

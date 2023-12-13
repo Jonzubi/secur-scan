@@ -53,7 +53,7 @@ export class QueueService {
       queue._id,
       RequestStatus.WORKING,
     );
-    this.eventsGateway.emitRequestFinished(queue.requestId.userId);
+    this.eventsGateway.emitRequestStatusChange(queue.requestId.userId);
     await this.requestResolveService.resolveQueueRequest(queue.requestId);
     await this.queueModel.deleteOne({ _id: queue._id });
   }

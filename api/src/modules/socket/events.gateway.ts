@@ -42,7 +42,7 @@ export class EventsGateway
     }
   }
 
-  emitRequestFinished(userId: Types.ObjectId) {
+  emitRequestStatusChange(userId: Types.ObjectId) {
     const socketId = [...this.clients].find(([id]) => id.equals(userId))?.[1];
     const client = this.server.sockets.sockets.get(socketId);
     if (client) {
