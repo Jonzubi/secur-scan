@@ -8,7 +8,7 @@ export type ShodanScanIpMinifiedDocument =
 export class ShodanScanIpMinified {
   @Prop({ type: [Number] })
   ports: number[];
-  @Prop({ type: [Number] })
+  @Prop({ type: Number })
   vulns: number;
   @Prop({ type: [String] })
   domains: string[];
