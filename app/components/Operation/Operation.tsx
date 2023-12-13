@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, ToastAndroid } from 'react-native';
 import React from 'react';
 import styles from './Operation.styles';
 import IconRequestType from '../../components/IconRequestType/IconRequestType';
-import StatusToIcon from './StatusToIcon';
+import StatusToIcon from '../StatusToIcon/StatusToIcon';
 import { RequestState } from '../../store/requestStore';
 import { RequestStatus, RequestType } from '@jonzubi/securscan-shared';
 import { useRouter } from 'expo-router';
