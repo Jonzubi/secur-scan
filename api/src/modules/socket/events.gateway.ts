@@ -24,9 +24,7 @@ export class EventsGateway
     string
   >();
 
-  afterInit() {
-    console.log('server initialized');
-  }
+  afterInit() {}
 
   handleConnection(client: Socket) {
     const userId = client.handshake.query.userId as string;
