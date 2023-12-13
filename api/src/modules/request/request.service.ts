@@ -1,4 +1,4 @@
-import { ICreateRequest } from '@jonzubi/securscan-shared';
+import { ICreateRequest, RequestStatus } from '@jonzubi/securscan-shared';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
@@ -36,5 +36,12 @@ export class RequestService {
         },
       },
     ]);
+  }
+
+  async updateRequestStatus(requestId: Types.ObjectId, status: RequestStatus) {
+    return await this.requestModel.updateOne(
+      { _id: requestId },
+      { status: status },
+    );
   }
 }

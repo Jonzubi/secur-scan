@@ -10,6 +10,7 @@ import { Model } from 'mongoose';
 import { domainToIP } from 'src/utils/functions/dns';
 import { EventsGateway } from 'src/modules/socket/events.gateway';
 import { ShodanService } from './shodan.service';
+import { RequestService } from '../request.service';
 
 @Injectable()
 export class RequestResolveService {
@@ -20,6 +21,7 @@ export class RequestResolveService {
     private requestModel: Model<RequestDocument>,
     private eventsGateway: EventsGateway,
     private readonly shodanService: ShodanService,
+    private readonly requestService: RequestService,
   ) {}
 
   // A dictionary relating the requestType and the resolve function
@@ -92,21 +94,22 @@ export class RequestResolveService {
     const resolveFunction = this.resolveFunctions[request.requestType];
     try {
       const resolve = await resolveFunction.bind(this)(request);
-      await this.requestModel.updateOne(
-        { _id: request._id },
-        { status: RequestStatus.SUCCESS },
+      await this.requestService.updateRequestStatus(
+        request._id,
+        RequestStatus.SUCCESS,
       );
-      this.eventsGateway.emitRequestFinished(request.userId);
       return resolve;
     } catch (error) {
       await this.createErroredRequestResolve(
         request,
         JSON.stringify(error.message),
       );
-      await this.requestModel.updateOne(
-        { _id: request._id },
-        { status: RequestStatus.ERROR },
+      await this.requestService.updateRequestStatus(
+        request._id,
+        RequestStatus.ERROR,
       );
+    } finally {
+      this.eventsGateway.emitRequestFinished(request.userId);
     }
   }
 }
