@@ -8,7 +8,7 @@ import {
 import { Model, Types } from 'mongoose';
 import { RequestStatus, Tier } from '@jonzubi/securscan-shared';
 import { Cron } from '@nestjs/schedule';
-import { RequestDocument } from '../schema/request.schema';
+import { Request, RequestDocument } from '../schema/request.schema';
 import { RequestResolveService } from './requestResolve.service';
 import { FREE_QUEUE_INTERVAL } from 'src/utils/constants/queue';
 import { RequestService } from '../request.service';
@@ -18,6 +18,7 @@ import { EventsGateway } from 'src/modules/socket/events.gateway';
 export class QueueService {
   constructor(
     @InjectModel(Queue.name) private queueModel: Model<QueueDocument>,
+    @InjectModel(Request.name) private requestModel: Model<RequestDocument>,
     private readonly requestResolveService: RequestResolveService,
     private readonly requestService: RequestService,
     private eventsGateway: EventsGateway,
@@ -59,8 +60,19 @@ export class QueueService {
   }
 
   async getNextRequestByTier(tier: Tier): Promise<PopulatedQueueDocument> {
+    // Obtén los ids de los requests con estado 'pending'
+    const pendingRequestIds = await this.requestModel
+      .find({ status: RequestStatus.PENDING })
+      .select('_id')
+      .exec();
+
+    if (!pendingRequestIds.length) return null;
+    // Convierte los documentos a un array de ids
+    const ids = pendingRequestIds.map((doc) => doc._id);
+
+    // Busca en la cola donde requestId está en los ids obtenidos y tier es el proporcionado
     return await this.queueModel
-      .findOne({ tier })
+      .findOne({ tier, requestId: { $in: ids } })
       .sort({ priority: 1, reqTimeSpan: 1 })
       .populate<{ requestId: RequestDocument }>('requestId')
       .exec();
