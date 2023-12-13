@@ -19,7 +19,7 @@ export default function Layout() {
       },
     });
 
-    socket.on('requestFinished', async () => {
+    socket.on('requestStatusChanged', async () => {
       const auxRequests = (await getRequests(access_token)).data;
       setRequests(
         auxRequests.map((request: IGetRequest) => ({
