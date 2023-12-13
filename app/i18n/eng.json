@@ -46,7 +46,10 @@
     "submitButton": "Process"
   },
   "resolveDnsFinishedScreen": {
-    "title": "Resolve DNS"
+    "title": "Resolve DNS",
+    "requestType": "Type",
+    "requestDate": "Date",
+    "requestStatus": "Status"
   },
   "scanIpScreen": {
     "title": "Scan IP",
