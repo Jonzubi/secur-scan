@@ -8,6 +8,7 @@ export type IGetRequest = {
   status: RequestStatus;
   __v: number;
   requestResolve: IResolve[];
+  createdAt: Date;
 };
 
 export type IResolve = {
