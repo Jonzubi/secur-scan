@@ -11,16 +11,19 @@ const StatusToIcon = ({ status }: IStatusToIcon) => {
     return <ActivityIndicator color={colors.SECONDARY_RED} />;
   }
 
+  const RequestStatusToColor = {
+    [RequestStatus.SUCCESS]: colors.MAIN_GREEN,
+    [RequestStatus.ERROR]: colors.SECONDARY_RED,
+    [RequestStatus.WORKING]: colors.YELLOW,
+  };
+
   return (
     <View
       style={{
         width: 20,
         height: 20,
         borderRadius: 10,
-        backgroundColor:
-          status === RequestStatus.SUCCESS
-            ? colors.MAIN_GREEN
-            : colors.SECONDARY_RED,
+        backgroundColor: RequestStatusToColor[status],
       }}
     />
   );
