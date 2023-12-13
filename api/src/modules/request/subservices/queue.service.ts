@@ -12,6 +12,7 @@ import { RequestDocument } from '../schema/request.schema';
 import { RequestResolveService } from './requestResolve.service';
 import { FREE_QUEUE_INTERVAL } from 'src/utils/constants/queue';
 import { RequestService } from '../request.service';
+import { EventsGateway } from 'src/modules/socket/events.gateway';
 
 @Injectable()
 export class QueueService {
@@ -19,6 +20,7 @@ export class QueueService {
     @InjectModel(Queue.name) private queueModel: Model<QueueDocument>,
     private readonly requestResolveService: RequestResolveService,
     private readonly requestService: RequestService,
+    private eventsGateway: EventsGateway,
   ) {}
 
   async addToQueue({
@@ -51,6 +53,7 @@ export class QueueService {
       queue._id,
       RequestStatus.WORKING,
     );
+    this.eventsGateway.emitRequestFinished(queue.requestId.userId);
     await this.requestResolveService.resolveQueueRequest(queue.requestId);
     await this.queueModel.deleteOne({ _id: queue._id });
   }
