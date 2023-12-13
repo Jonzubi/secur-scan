@@ -20,6 +20,9 @@ export class Request {
 
   @Prop({ type: String, enum: RequestStatus, default: RequestStatus.PENDING })
   status: RequestStatus;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
 }
 
 export const RequestSchema = SchemaFactory.createForClass(Request);
