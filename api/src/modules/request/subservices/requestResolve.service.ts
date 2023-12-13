@@ -102,7 +102,7 @@ export class RequestResolveService {
     } catch (error) {
       await this.createErroredRequestResolve(
         request,
-        JSON.stringify(error.message),
+        JSON.stringify(error, null, 2),
       );
       await this.requestService.updateRequestStatus(
         request._id,
