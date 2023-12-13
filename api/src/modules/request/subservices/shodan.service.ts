@@ -14,8 +14,7 @@ export class ShodanService {
     private readonly configService: ConfigService,
   ) {}
 
-  private readonly shodanApiKey =
-    this.configService.get<string>('SHODAN_API_KEY');
+  private readonly shodanApiKey = this.configService.get<string>('SHODAN_KEY');
   private readonly shodanApiUrl = 'https://api.shodan.io';
 
   async scanIpMinified(ip: string): Promise<IShodanScanIpMinifiedForDocument> {
@@ -28,7 +27,7 @@ export class ShodanService {
     );
     return {
       ports: data.ports,
-      vulns: data.vulns.length,
+      vulns: data.vulns ? data.vulns.length : 0,
       domains: data.domains,
       hostnames: data.hostnames,
       isp: data.isp,
