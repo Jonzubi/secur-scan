@@ -8,7 +8,7 @@ import { RequestStatus, RequestType } from '@jonzubi/securscan-shared';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
-const Operation = ({ type, ipToScan, status }: RequestState) => {
+const Operation = ({ type, ipToScan, status, id }: RequestState) => {
   const router = useRouter();
   const { t } = useTranslation();
 
@@ -27,7 +27,12 @@ const Operation = ({ type, ipToScan, status }: RequestState) => {
       return;
     }
 
-    router.push(typeToRoute[type]);
+    router.push({
+      pathname: typeToRoute[type],
+      params: {
+        requestId: id,
+      },
+    } as any);
   };
 
   return (
