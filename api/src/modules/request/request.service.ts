@@ -20,8 +20,17 @@ export class RequestService {
     return await modelRequest.save();
   }
 
-  async getRequestById(requestId: Types.ObjectId) {
-    return await this.requestModel.findById(requestId);
+  async getRequestById({
+    requestId,
+    userId,
+  }: {
+    requestId: Types.ObjectId;
+    userId: Types.ObjectId;
+  }) {
+    return await this.requestModel.findOne({
+      _id: requestId,
+      userId: userId,
+    });
   }
 
   async getRequests(userId: Types.ObjectId): Promise<RequestDocument[]> {

@@ -47,4 +47,15 @@ export class RequestController {
     const requests = await this.requestService.getRequests(_id);
     res.status(HttpStatus.OK).send(requests);
   }
+
+  @Get('/:requestId')
+  async getRequestById(@Req() req: any, @Res() res: Response) {
+    const { _id } = req.user as UserDocument;
+    const { requestId } = req.params;
+    const request = await this.requestService.getRequestById({
+      requestId,
+      userId: _id,
+    });
+    res.status(HttpStatus.OK).send(request);
+  }
 }

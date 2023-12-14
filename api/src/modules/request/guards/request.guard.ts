@@ -8,6 +8,7 @@ import { ICreateRequest, RequestType } from '@jonzubi/securscan-shared';
 import { Types } from 'mongoose';
 import { RequestService } from '../request.service';
 import { isIP } from 'net';
+import { UserDocument } from 'src/modules/user/schema/user.schema';
 
 @Injectable()
 export class RequestGuard implements CanActivate {
@@ -15,6 +16,7 @@ export class RequestGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
+    const { _id } = request.user as UserDocument;
     const { requestType, ipToScan, requestToScan } =
       request.body as ICreateRequest;
 
@@ -44,9 +46,10 @@ export class RequestGuard implements CanActivate {
       if (!Types.ObjectId.isValid(requestToScan))
         throw new BadRequestException('errors.invalidRequestToScanObjectId');
 
-      const request = await this.requestService.getRequestById(
-        requestToScan as unknown as Types.ObjectId,
-      );
+      const request = await this.requestService.getRequestById({
+        requestId: requestToScan as unknown as Types.ObjectId,
+        userId: _id,
+      });
 
       if (request.requestType !== RequestType.DETAILED_SCAN)
         throw new BadRequestException('errors.invalidRequestToScanType');
