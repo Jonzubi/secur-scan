@@ -26,11 +26,19 @@ export class RequestService {
   }: {
     requestId: Types.ObjectId;
     userId: Types.ObjectId;
-  }) {
-    return await this.requestModel.findOne({
-      _id: requestId,
-      userId: userId,
-    });
+  }): Promise<RequestDocument> {
+    const result = await this.requestModel.aggregate([
+      { $match: { _id: requestId, userId: userId } },
+      {
+        $lookup: {
+          from: 'requestresolves',
+          localField: '_id',
+          foreignField: 'requestId',
+          as: 'requestResolve',
+        },
+      },
+    ]);
+    return result[0];
   }
 
   async getRequests(userId: Types.ObjectId): Promise<RequestDocument[]> {

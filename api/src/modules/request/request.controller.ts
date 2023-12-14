@@ -15,6 +15,7 @@ import { UserDocument } from '../user/schema/user.schema';
 import { QueueService } from './subservices/queue.service';
 import { PriceGuard } from './guards/price.guard';
 import { RequestGuard } from './guards/request.guard';
+import { Types } from 'mongoose';
 
 @Controller('request')
 export class RequestController {
@@ -52,10 +53,13 @@ export class RequestController {
   async getRequestById(@Req() req: any, @Res() res: Response) {
     const { _id } = req.user as UserDocument;
     const { requestId } = req.params;
+
+    const convertedRequestId = new Types.ObjectId(requestId);
     const request = await this.requestService.getRequestById({
-      requestId,
+      requestId: convertedRequestId,
       userId: _id,
     });
+
     res.status(HttpStatus.OK).send(request);
   }
 }
