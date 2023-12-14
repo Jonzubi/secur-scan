@@ -40,6 +40,7 @@ const OperationsScreen = () => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
+        contentContainerStyle={{ flex: 1 }}
       >
         <FlashList
           data={requests}
