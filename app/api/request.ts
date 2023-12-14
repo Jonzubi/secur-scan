@@ -9,6 +9,12 @@ export const getRequests = (token: string) =>
     getHeaderWithAccessToken(token),
   );
 
+export const getRequestById = (token: string, requestId: string) =>
+  axios.get<IGetRequest>(
+    `${process.env.EXPO_PUBLIC_API_URL}/request/${requestId}`,
+    getHeaderWithAccessToken(token),
+  );
+
 export const createRequest = (token: string, body: ICreateRequest) =>
   axios.post(
     `${process.env.EXPO_PUBLIC_API_URL}/request`,
