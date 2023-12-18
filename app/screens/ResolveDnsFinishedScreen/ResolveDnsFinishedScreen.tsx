@@ -7,7 +7,6 @@ import { getRequestById } from '../../api/request';
 import { useUserStore } from '../../store/userStore';
 import colors from '../../constants/colors';
 import FinishedReqHeader from '../../components/FinishedReqHeader/FinishedReqHeader';
-import HorizontalDivider from '../../components/HorizontalDivider/HorizontalDivider';
 import { Divider } from '@rneui/themed';
 
 const ResolveDnsFinishedScreen = () => {
