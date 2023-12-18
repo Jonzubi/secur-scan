@@ -8,6 +8,7 @@ import { useUserStore } from '../../store/userStore';
 import colors from '../../constants/colors';
 import FinishedReqHeader from '../../components/FinishedReqHeader/FinishedReqHeader';
 import HorizontalDivider from '../../components/HorizontalDivider/HorizontalDivider';
+import { Divider } from '@rneui/themed';
 
 const ResolveDnsFinishedScreen = () => {
   const { requestId } = useLocalSearchParams();
@@ -40,7 +41,7 @@ const ResolveDnsFinishedScreen = () => {
             target={request.ipToScan}
             key={request._id}
           />
-          <HorizontalDivider style={{ marginTop: 20, marginBottom: 40 }} />
+          <Divider style={{ marginTop: 20, marginBottom: 40 }} />
         </>
       ) : (
         <ActivityIndicator size={'large'} color={colors.SECONDARY_RED} />
