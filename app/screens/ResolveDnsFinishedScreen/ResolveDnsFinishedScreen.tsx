@@ -6,14 +6,13 @@ import { IGetRequest } from '../../api/interfaces/request';
 import { getRequestById } from '../../api/request';
 import { useUserStore } from '../../store/userStore';
 import colors from '../../constants/colors';
-import { useTranslation } from 'react-i18next';
 import FinishedReqHeader from '../../components/FinishedReqHeader/FinishedReqHeader';
+import HorizontalDivider from '../../components/HorizontalDivider/HorizontalDivider';
 
 const ResolveDnsFinishedScreen = () => {
   const { requestId } = useLocalSearchParams();
   const { access_token } = useUserStore();
   const [request, setRequest] = useState<IGetRequest>();
-  const { t } = useTranslation();
 
   useEffect(() => {
     const getRequestData = async () => {
@@ -26,7 +25,7 @@ const ResolveDnsFinishedScreen = () => {
     };
     getRequestData();
   }, []);
-  console.log(typeof request?.createdAt);
+  console.log(request);
   return (
     <ScrollView
       style={[styles.container]}
@@ -41,6 +40,7 @@ const ResolveDnsFinishedScreen = () => {
             target={request.ipToScan}
             key={request._id}
           />
+          <HorizontalDivider style={{ marginTop: 20, marginBottom: 40 }} />
         </>
       ) : (
         <ActivityIndicator size={'large'} color={colors.SECONDARY_RED} />
