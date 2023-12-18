@@ -8,6 +8,7 @@ import { useUserStore } from '../../store/userStore';
 import colors from '../../constants/colors';
 import FinishedReqHeader from '../../components/FinishedReqHeader/FinishedReqHeader';
 import { Divider } from '@rneui/themed';
+import Report from '../../components/Report/Report';
 
 const ResolveDnsFinishedScreen = () => {
   const { requestId } = useLocalSearchParams();
@@ -25,7 +26,7 @@ const ResolveDnsFinishedScreen = () => {
     };
     getRequestData();
   }, []);
-  console.log(request);
+
   return (
     <ScrollView
       style={[styles.container]}
@@ -41,6 +42,7 @@ const ResolveDnsFinishedScreen = () => {
             key={request._id}
           />
           <Divider style={{ marginTop: 20, marginBottom: 40 }} />
+          <Report {...request} />
         </>
       ) : (
         <ActivityIndicator size={'large'} color={colors.SECONDARY_RED} />

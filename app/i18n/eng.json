@@ -65,7 +65,9 @@
   "commonFinishedScreen": {
     "target": "Target",
     "requestDate": "Date",
-    "status": "Status"
+    "status": "Status",
+    "reportTitleSUCCESS": "Collected data",
+    "reportTitleERROR": "Errors during the process"
   },
   "status": {
     "PENDING": "Pending",
