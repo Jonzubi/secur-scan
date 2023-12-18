@@ -1,4 +1,4 @@
-import { ActivityIndicator, ScrollView, Text } from 'react-native';
+import { ActivityIndicator, ScrollView } from 'react-native';
 import { useEffect, useState } from 'react';
 import styles from './ResolveDnsFinishedScreen.styles';
 import { useLocalSearchParams } from 'expo-router';
@@ -6,11 +6,14 @@ import { IGetRequest } from '../../api/interfaces/request';
 import { getRequestById } from '../../api/request';
 import { useUserStore } from '../../store/userStore';
 import colors from '../../constants/colors';
+import { useTranslation } from 'react-i18next';
+import FinishedReqHeader from '../../components/FinishedReqHeader/FinishedReqHeader';
 
 const ResolveDnsFinishedScreen = () => {
   const { requestId } = useLocalSearchParams();
   const { access_token } = useUserStore();
   const [request, setRequest] = useState<IGetRequest>();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const getRequestData = async () => {
@@ -23,7 +26,7 @@ const ResolveDnsFinishedScreen = () => {
     };
     getRequestData();
   }, []);
-  console.log(request);
+  console.log(typeof request?.createdAt);
   return (
     <ScrollView
       style={[styles.container]}
@@ -31,7 +34,13 @@ const ResolveDnsFinishedScreen = () => {
     >
       {request ? (
         <>
-          <Text>Request finished</Text>
+          <FinishedReqHeader
+            requestDate={request.createdAt}
+            requestType={request.requestType}
+            status={request.status}
+            target={request.ipToScan}
+            key={request._id}
+          />
         </>
       ) : (
         <ActivityIndicator size={'large'} color={colors.SECONDARY_RED} />

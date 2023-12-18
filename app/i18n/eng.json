@@ -61,5 +61,16 @@
   },
   "toasts": {
     "operationNotFinished": "The operation has not finished yet"
+  },
+  "commonFinishedScreen": {
+    "target": "Target",
+    "requestDate": "Date",
+    "status": "Status"
+  },
+  "status": {
+    "PENDING": "Pending",
+    "WORKING": "Working",
+    "SUCCESS": "Success",
+    "ERROR": "Error"
   }
 }
