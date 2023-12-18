@@ -16,7 +16,7 @@ const Report = (request: IGetRequest) => {
   };
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <ReportTitle status={status} />
       {typeToComponent[request.requestType](request)}
     </View>

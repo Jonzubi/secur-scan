@@ -1,4 +1,4 @@
-import { ActivityIndicator, ScrollView } from 'react-native';
+import { ActivityIndicator, ScrollView, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import styles from './ResolveDnsFinishedScreen.styles';
 import { useLocalSearchParams } from 'expo-router';
@@ -29,11 +29,10 @@ const ResolveDnsFinishedScreen = () => {
 
   return (
     <ScrollView
-      style={[styles.container]}
-      contentContainerStyle={[!request && styles.center]}
+      contentContainerStyle={[styles.container, !request && styles.center]}
     >
       {request ? (
-        <>
+        <View style={{ flex: 1 }}>
           <FinishedReqHeader
             requestDate={request.createdAt}
             requestType={request.requestType}
@@ -43,7 +42,7 @@ const ResolveDnsFinishedScreen = () => {
           />
           <Divider style={{ marginTop: 20, marginBottom: 40 }} />
           <Report {...request} />
-        </>
+        </View>
       ) : (
         <ActivityIndicator size={'large'} color={colors.SECONDARY_RED} />
       )}
