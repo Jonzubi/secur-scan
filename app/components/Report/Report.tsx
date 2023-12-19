@@ -14,7 +14,7 @@ const Report = (request: IGetRequest) => {
     [RequestType.DETAILED_SCAN]: () => null,
     [RequestType.MITIGATION_ADVICES]: () => null,
   };
-  console.log(request);
+
   return (
     <View style={{ flex: 1 }}>
       <ReportTitle status={status} />

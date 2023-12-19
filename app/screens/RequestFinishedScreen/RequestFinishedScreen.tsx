@@ -9,8 +9,18 @@ import FinishedReqHeader from '../../components/FinishedReqHeader/FinishedReqHea
 import { Divider } from '@rneui/base';
 import Report from '../../components/Report/Report';
 import colors from '../../constants/colors';
+import { useNavigation } from '@react-navigation/native';
+import { RequestType } from '@jonzubi/securscan-shared';
+
+const RequestTypeToTitle: Record<RequestType, string> = {
+  [RequestType.RESOLVE_DNS]: 'Resolve DNS',
+  [RequestType.SCAN_IP]: 'Scan IP',
+  [RequestType.DETAILED_SCAN]: 'Detailed Scan',
+  [RequestType.MITIGATION_ADVICES]: 'Mitigation Advices',
+};
 
 const RequestFinishedScreen = () => {
+  const navigation = useNavigation();
   const { requestId } = useLocalSearchParams();
   const { access_token } = useUserStore();
   const [request, setRequest] = useState<IGetRequest>();
@@ -19,6 +29,9 @@ const RequestFinishedScreen = () => {
     const getRequestData = async () => {
       try {
         const rData = await getRequestById(access_token, requestId as string);
+        navigation.setOptions({
+          title: RequestTypeToTitle[rData.data.requestType],
+        });
         setRequest(rData.data);
       } catch (err) {
         console.log(err);
