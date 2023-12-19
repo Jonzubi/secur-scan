@@ -36,6 +36,26 @@ const ReportScanIp = ({ request }: IReportScanIpProps) => {
             </View>
           ))}
       </View>
+      <View style={styles.titleContainer}>
+        <MaterialCommunityIcons
+          name="bug"
+          size={30}
+          color={colors.SECONDARY_RED}
+        />
+        <Text style={styles.titleText}>{t('reportScanIp.vulns')}</Text>
+      </View>
+      <View style={styles.subContainer}>
+        <Text style={styles.vulnsReportText}>
+          {t('reportScanIp.vulnsReport', {
+            vulns: scanIpData.vulns[0],
+          })}
+        </Text>
+        {scanIpData.vulns[0] !== 0 && (
+          <Text style={[styles.vulnsReportText, styles.permorDetailedScanText]}>
+            {t('reportScanIp.performDetailedScan')}
+          </Text>
+        )}
+      </View>
     </View>
   );
 };

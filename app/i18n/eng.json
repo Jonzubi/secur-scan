@@ -71,6 +71,9 @@
   },
   "reportScanIp": {
     "ports": "Ports",
+    "vulns": "Vulnerabilities",
+    "vulnsReport": "{{vulns}} vulnerabilities found",
+    "performDetailedScan": "Perform a detailed scan to get more information"
   },
   "status": {
     "PENDING": "Pending",

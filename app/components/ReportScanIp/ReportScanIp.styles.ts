@@ -34,4 +34,12 @@ export default StyleSheet.create({
   portText: {
     color: colors.WHITE,
   },
+  vulnsReportText: {
+    color: colors.WHITE,
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  permorDetailedScanText: {
+    color: colors.SECONDARY_RED,
+  },
 });
