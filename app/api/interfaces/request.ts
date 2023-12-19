@@ -15,5 +15,14 @@ export type IResolve = {
   _id: string;
   requestId: string;
   resolveDNS: string;
+  scanIP: IScanIp;
   __v: number;
+};
+
+export type IScanIp = {
+  ports: number[];
+  vulns: number[];
+  domains: string[];
+  hostnames: string[];
+  isp: string;
 };

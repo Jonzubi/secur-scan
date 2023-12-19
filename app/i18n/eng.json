@@ -69,6 +69,9 @@
     "reportTitleSUCCESS": "Collected data",
     "reportTitleERROR": "Errors during the process"
   },
+  "reportScanIp": {
+    "ports": "Ports",
+  },
   "status": {
     "PENDING": "Pending",
     "WORKING": "Working",

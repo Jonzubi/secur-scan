@@ -6,7 +6,6 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
   },
   normalText: {
     fontSize: 20,
