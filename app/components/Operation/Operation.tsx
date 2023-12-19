@@ -4,20 +4,13 @@ import styles from './Operation.styles';
 import IconRequestType from '../../components/IconRequestType/IconRequestType';
 import StatusToIcon from '../StatusToIcon/StatusToIcon';
 import { RequestState } from '../../store/requestStore';
-import { RequestStatus, RequestType } from '@jonzubi/securscan-shared';
+import { RequestStatus } from '@jonzubi/securscan-shared';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
 const Operation = ({ type, ipToScan, status, id }: RequestState) => {
   const router = useRouter();
   const { t } = useTranslation();
-
-  const typeToRoute: Record<RequestType, string> = {
-    RESOLVE_DNS: 'modals/resolve-dns-finished',
-    SCAN_IP: 'modals/scan-ip-finished',
-    DETAILED_SCAN: 'modals/detailed-scan-finished',
-    MITIGATION_ADVICES: 'modals/mitigation-advices-finished',
-  };
 
   const validStatuses = [RequestStatus.SUCCESS, RequestStatus.ERROR];
 
@@ -28,7 +21,7 @@ const Operation = ({ type, ipToScan, status, id }: RequestState) => {
     }
 
     router.push({
-      pathname: typeToRoute[type],
+      pathname: 'modals/request-finished',
       params: {
         requestId: id,
       },

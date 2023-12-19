@@ -1,16 +1,16 @@
-import { ActivityIndicator, ScrollView, View } from 'react-native';
-import { useEffect, useState } from 'react';
-import styles from './ResolveDnsFinishedScreen.styles';
+import { View, ScrollView, ActivityIndicator } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { useLocalSearchParams } from 'expo-router';
+import { useUserStore } from '../../store/userStore';
 import { IGetRequest } from '../../api/interfaces/request';
 import { getRequestById } from '../../api/request';
-import { useUserStore } from '../../store/userStore';
-import colors from '../../constants/colors';
+import styles from './RequestFinishedScreen.styles';
 import FinishedReqHeader from '../../components/FinishedReqHeader/FinishedReqHeader';
-import { Divider } from '@rneui/themed';
+import { Divider } from '@rneui/base';
 import Report from '../../components/Report/Report';
+import colors from '../../constants/colors';
 
-const ResolveDnsFinishedScreen = () => {
+const RequestFinishedScreen = () => {
   const { requestId } = useLocalSearchParams();
   const { access_token } = useUserStore();
   const [request, setRequest] = useState<IGetRequest>();
@@ -50,4 +50,4 @@ const ResolveDnsFinishedScreen = () => {
   );
 };
 
-export default ResolveDnsFinishedScreen;
+export default RequestFinishedScreen;
