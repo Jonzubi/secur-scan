@@ -27,6 +27,7 @@ export default function Layout() {
           ipToScan: request.ipToScan,
           type: request.requestType,
           status: request.status,
+          createdAt: request.createdAt,
         })),
       );
     });

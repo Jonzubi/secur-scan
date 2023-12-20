@@ -21,6 +21,7 @@ const OperationsScreen = () => {
         ipToScan: request.ipToScan,
         type: request.requestType,
         status: request.status,
+        createdAt: request.createdAt,
       })),
     );
   };
@@ -34,6 +35,13 @@ const OperationsScreen = () => {
     refreshRequests().finally(() => setRefreshing(false));
   };
 
+  const sortedRequests = requests.slice().sort((a, b) => {
+    const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+    const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+
+    return dateB.getTime() - dateA.getTime();
+  });
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -43,7 +51,7 @@ const OperationsScreen = () => {
         contentContainerStyle={{ flex: 1 }}
       >
         <FlashList
-          data={requests}
+          data={sortedRequests}
           renderItem={({ item }) => <Operation {...item} />}
           keyExtractor={(item) => item.id}
           estimatedItemSize={100}

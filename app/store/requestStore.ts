@@ -17,6 +17,7 @@ export interface RequestState {
   type: RequestType;
   ipToScan: string;
   status: RequestStatus;
+  createdAt: Date;
 }
 
 export const useRequestStore = create<RequestStore>((set) => ({
