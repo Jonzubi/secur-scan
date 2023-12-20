@@ -29,8 +29,8 @@ const ReportScanIp = ({ request }: IReportScanIpProps) => {
         {scanIpData.ports
           .sort((a, b) => a - b)
           .map((port) => (
-            <View style={styles.portContainer}>
-              <Text key={port} style={styles.portText}>
+            <View key={port} style={styles.portContainer}>
+              <Text key={`t${port}`} style={styles.portText}>
                 {port}
               </Text>
             </View>
