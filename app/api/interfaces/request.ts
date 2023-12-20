@@ -21,7 +21,7 @@ export type IResolve = {
 
 export type IScanIp = {
   ports: number[];
-  vulns: number[];
+  vulns: number;
   domains: string[];
   hostnames: string[];
   isp: string;

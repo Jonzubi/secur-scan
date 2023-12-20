@@ -47,10 +47,10 @@ const ReportScanIp = ({ request }: IReportScanIpProps) => {
       <View style={styles.subContainer}>
         <Text style={styles.vulnsReportText}>
           {t('reportScanIp.vulnsReport', {
-            vulns: scanIpData.vulns[0],
+            vulns: scanIpData.vulns,
           })}
         </Text>
-        {scanIpData.vulns[0] !== 0 && (
+        {scanIpData.vulns !== 0 && (
           <Text style={[styles.vulnsReportText, styles.permorDetailedScanText]}>
             {t('reportScanIp.performDetailedScan')}
           </Text>
