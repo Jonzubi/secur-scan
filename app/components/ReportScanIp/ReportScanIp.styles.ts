@@ -42,4 +42,14 @@ export default StyleSheet.create({
   permorDetailedScanText: {
     color: colors.SECONDARY_RED,
   },
+  domainText: {
+    color: colors.WHITE,
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  hostNameText: {
+    padding: 5,
+    color: colors.WHITE,
+    fontSize: 12,
+  },
 });

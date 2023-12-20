@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 import { FC } from 'react';
 import ReportTitle from '../../components/ReportTitle/ReportTitle';
 import { IGetRequest } from 'api/interfaces/request';
@@ -17,10 +17,10 @@ const Report = (request: IGetRequest) => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <ScrollView>
       <ReportTitle status={status} />
       {typeToComponent[request.requestType](request)}
-    </View>
+    </ScrollView>
   );
 };
 

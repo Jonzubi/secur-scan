@@ -73,7 +73,9 @@
     "ports": "Ports",
     "vulns": "Vulnerabilities",
     "vulnsReport": "{{vulns}} vulnerabilities found",
-    "performDetailedScan": "Perform a detailed scan to get more information"
+    "performDetailedScan": "Perform a detailed scan to get more information",
+    "domainHostnames": "Domain & Hostnames",
+    "netProvider": "Network provider (ISP)"
   },
   "status": {
     "PENDING": "Pending",

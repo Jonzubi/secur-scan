@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import { IGetRequest } from '../../api/interfaces/request';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import colors from '../../constants/colors';
 import { useTranslation } from 'react-i18next';
 import styles from './ReportScanIp.styles';
@@ -55,6 +55,40 @@ const ReportScanIp = ({ request }: IReportScanIpProps) => {
             {t('reportScanIp.performDetailedScan')}
           </Text>
         )}
+      </View>
+      <View style={styles.titleContainer}>
+        <MaterialIcons name="computer" size={30} color={colors.SECONDARY_RED} />
+        <Text style={styles.titleText}>
+          {t('reportScanIp.domainHostnames')}
+        </Text>
+      </View>
+      <View style={styles.subContainer}>
+        {scanIpData.domains.map((domain) => (
+          <View key={domain}>
+            <Text key={`d${domain}`} style={styles.domainText}>
+              {domain}
+            </Text>
+            {scanIpData.hostnames.map((hostname) => {
+              if (!hostname.includes(domain)) return null;
+              return (
+                <Text key={`h${hostname}`} style={styles.hostNameText}>
+                  - {hostname}
+                </Text>
+              );
+            })}
+          </View>
+        ))}
+      </View>
+      <View style={styles.titleContainer}>
+        <MaterialCommunityIcons
+          name="server-network"
+          size={30}
+          color={colors.SECONDARY_RED}
+        />
+        <Text style={styles.titleText}>{t('reportScanIp.netProvider')}</Text>
+      </View>
+      <View style={styles.subContainer}>
+        <Text style={styles.vulnsReportText}>{scanIpData.isp}</Text>
       </View>
     </View>
   );
