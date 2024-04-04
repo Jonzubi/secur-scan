@@ -26,6 +26,12 @@ const _layout = () => {
           headerTitle: t('scanIpScreen.title'),
         }}
       />
+      <Stack.Screen
+        name="detailed-scan"
+        options={{
+          headerTitle: t('detailedScanIpScreen.title'),
+        }}
+      />
     </Stack>
   );
 };
