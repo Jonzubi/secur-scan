@@ -45,18 +45,18 @@ const HomeScreen = () => {
       description: t('homeScreen.requestLinkDetailedInfoDescription'),
       requestType: RequestType.DETAILED_SCAN,
     },
-    {
-      title: t('homeScreen.requestLinkMitigationAdvices'),
-      icon: () => (
-        <MaterialCommunityIcons
-          name="shield-check-outline"
-          size={24}
-          color={colors.MAIN_RED}
-        />
-      ),
-      description: t('homeScreen.requestLinkMitigationAdvicesDescription'),
-      requestType: RequestType.MITIGATION_ADVICES,
-    },
+    // {
+    //   title: t('homeScreen.requestLinkMitigationAdvices'),
+    //   icon: () => (
+    //     <MaterialCommunityIcons
+    //       name="shield-check-outline"
+    //       size={24}
+    //       color={colors.MAIN_RED}
+    //     />
+    //   ),
+    //   description: t('homeScreen.requestLinkMitigationAdvicesDescription'),
+    //   requestType: RequestType.MITIGATION_ADVICES,
+    // },
   ];
 
   return (
