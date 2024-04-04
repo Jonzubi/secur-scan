@@ -40,7 +40,7 @@ export class ShodanService {
     const { data } = await firstValueFrom(
       this.httpService
         .get<any>(
-          `${this.shodanApiUrl}/shodan/host/${ip}?key=${this.shodanApiKey}&minify=true`,
+          `${this.shodanApiUrl}/shodan/host/${ip}?key=${this.shodanApiKey}&minify=false`,
         )
         .pipe(),
     );
@@ -56,12 +56,11 @@ export class ShodanService {
         if (!service.vulns) return;
 
         Object.keys(service.vulns).forEach((cve) => {
-          service.vulns[cve].forEach((vuln) => {
-            vulnsDetails.push({
-              cve: vuln,
-              port: service.port,
-              description: vuln.summary,
-            });
+          const vuln = service.vulns[cve];
+          vulnsDetails.push({
+            cve,
+            port: parseInt(service.port.toString()),
+            description: vuln.summary.toString(),
           });
         });
       });

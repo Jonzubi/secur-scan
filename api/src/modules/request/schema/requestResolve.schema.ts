@@ -4,6 +4,10 @@ import {
   ShodanScanIpMinifiedDocument,
   ShodanScanIpMinifiedSchema,
 } from './shodanScanIpMinified.schema';
+import {
+  ShodanDetailedScanIpDocument,
+  ShodanDetailedScanIpSchema,
+} from './shodanDetailedScanIp.schema';
 
 export type RequestResolveDocument = HydratedDocument<RequestResolve>;
 
@@ -18,8 +22,8 @@ export class RequestResolve {
   @Prop({ type: ShodanScanIpMinifiedSchema })
   scanIP: ShodanScanIpMinifiedDocument;
 
-  @Prop({ type: String })
-  detailedScan: string;
+  @Prop({ type: ShodanDetailedScanIpSchema })
+  detailedScan: ShodanDetailedScanIpDocument;
 
   @Prop({ type: String })
   mitigationAdvices: string;
