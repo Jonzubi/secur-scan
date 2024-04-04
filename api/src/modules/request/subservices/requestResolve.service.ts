@@ -57,14 +57,16 @@ export class RequestResolveService {
     return await scanIp.save();
   }
 
-  async detailedScan(
-    request: RequestDocument,
-  ): Promise<RequestResolveDocument> {
-    const detailedScan = new this.requestResolveModel({
-      requestId: request._id,
-      detailedScan: '',
+  async detailedScan({
+    ipToScan,
+    _id,
+  }: RequestDocument): Promise<RequestResolveDocument> {
+    const detailedScanIp = await this.shodanService.detailedScanIp(ipToScan);
+    const scanIp = new this.requestResolveModel({
+      requestId: _id,
+      detailedScan: detailedScanIp,
     });
-    return detailedScan;
+    return await scanIp.save();
   }
 
   async mitigationAdvices(

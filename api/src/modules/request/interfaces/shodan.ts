@@ -13,3 +13,12 @@ export interface IShodanScanIpMinifiedForDocument {
   hostnames: string[];
   isp: string;
 }
+
+export interface IShodanDetailedScanIp
+  extends IShodanScanIpMinifiedForDocument {
+  vulnsDetails: {
+    cve: string;
+    port: number;
+    description: string;
+  }[];
+}
