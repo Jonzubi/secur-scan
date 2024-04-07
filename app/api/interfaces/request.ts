@@ -16,6 +16,7 @@ export type IResolve = {
   requestId: string;
   resolveDNS: string;
   scanIP: IScanIp;
+  detailedScan: any;
   __v: number;
 };
 

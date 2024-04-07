@@ -82,6 +82,15 @@
     "domainHostnames": "Domain & Hostnames",
     "netProvider": "Network provider (ISP)"
   },
+  "reportDetailedScanIp": {
+    "ports": "Ports",
+    "vulns": "Vulnerabilities",
+    "vulnsReport": "{{vulns}} vulnerabilities found",
+    "performDetailedScan": "Perform a detailed scan to get more information",
+    "domainHostnames": "Domain & Hostnames",
+    "netProvider": "Network provider (ISP)",
+    "cveTitle": "{{cve}} in port {{port}}"
+  },
   "status": {
     "PENDING": "Pending",
     "WORKING": "Working",

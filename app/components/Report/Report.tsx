@@ -5,6 +5,7 @@ import { IGetRequest } from 'api/interfaces/request';
 import { RequestType } from '@jonzubi/securscan-shared';
 import ReportResolveDns from '../../components/ReportResolveDns/ReportResolveDns';
 import ReportScanIp from '../../components/ReportScanIp/ReportScanIp';
+import ReportDetailedScanIp from '../../components/ReportDetailedScanIp/ReportDetailedScanIp';
 
 const Report = (request: IGetRequest) => {
   const { status } = request;
@@ -12,7 +13,9 @@ const Report = (request: IGetRequest) => {
   const typeToComponent: Record<RequestType, FC> = {
     [RequestType.RESOLVE_DNS]: () => <ReportResolveDns request={request} />,
     [RequestType.SCAN_IP]: () => <ReportScanIp request={request} />,
-    [RequestType.DETAILED_SCAN]: () => null,
+    [RequestType.DETAILED_SCAN]: () => (
+      <ReportDetailedScanIp request={request} />
+    ),
     [RequestType.MITIGATION_ADVICES]: () => null,
   };
 
